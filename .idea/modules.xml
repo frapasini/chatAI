@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../analytics_data_warehouse/.idea/analytics_data_warehouse.iml" filepath="$PROJECT_DIR$/../analytics_data_warehouse/.idea/analytics_data_warehouse.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/chatAI.iml" filepath="$PROJECT_DIR$/.idea/chatAI.iml" />
     </modules>
   </component>
