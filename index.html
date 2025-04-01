@@ -29,14 +29,24 @@
 </head>
 <body>
     <script>
-        window.onload = function() {
+        function waitForUnless(callback, attempts = 10, delay = 500) {
             if (typeof Txt !== 'undefined' && Txt.identify) {
+                callback();
+            } else if (attempts > 0) {
+                console.warn("Waiting for Unless script to load...");
+                setTimeout(() => waitForUnless(callback, attempts - 1, delay), delay);
+            } else {
+                console.error("Unless script failed to load.");
+            }
+        }
+    
+        window.onload = function() {
+            waitForUnless(() => {
                 Txt.identify('aina.belloni@fiscozen.it', {}, '1507'); 
                 console.log("Visitor identified successfully.");
-            } else {
-                console.warn("Unless script not loaded yet.");
-            }
+            });
         };
     </script>
+    
 </body>
 </html>
