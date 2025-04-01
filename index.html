@@ -1,46 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<script
-src='//eu.fw-cdn.com/13036459/987023.js'
-chat='true'>
-</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ChatAI</title>
+    <title>Unless</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Custom Identifier for Unless -->
     <script>
-      window.intercomSettings = {
-        api_base: "https://api-iam.intercom.io",
-        app_id: "fnyato1w",
-        user_id: "68", // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
-        name: "analytics", // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
-        email: "analytics", // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email address
-        created_at: "21/1/25", // IMPORTANT: Replace "user.createdAt" with the variable you use to capture the user's sign-up date
-        user_hash: "3336e95f75c0e1e7bebb6e494c12123d55d7059622b56b6ae00a2893ee762658"
-      };
+        window.TxtOptions = { customIdentifier: '1507' }; // Sostituisci 'your-identifier' con il valore corretto
     </script>
+    
+    <script src="https://eu.fw-cdn.com/13036459/987023.js" chat="true"></script>
+    <script data-unless='1.2' data-installer='snippet'>
+        !function(o,p,t,i,m,a,l){function s(e){o.documentElement.style.opacity=e}function d(e){i.parentNode.insertBefore(e,i)}
+        s((window.TxtOptions||{}).asyncMode?"":0),setTimeout(function(){s("")},3e3),
+        i=(o.head||o.documentElement).firstChild,l="https://"+t+".unless.com/js/v5/latest/txt.min.js?id="+t+"&domain="+window.location.hostname,
+        (m=o.createElement("link")).href=l,m.rel="preconnect preload",m.as=p,d(m),
+        (a=o.createElement(p)).src=l,d(a),a.onerror=function(){s("")}
+        }(document,"script","802f9be4-64b4-4731-81a3-b85ec2d1fc22");
+    </script>
+
     <script>
-      // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/fnyato1w'
-        (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/fnyato1w';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
-    </script>
-    <script data-unless='1.2' data-installer='snippet'>!function(o,p,t,i,m,a,l){function s(e){o.documentElement.style.opacity=e}function d(e){i.parentNode.insertBefore(e,i)}s((window.TxtOptions||{}).asyncMode?"":0),setTimeout(function(){s("")},3e3),i=(o.head||o.documentElement).firstChild,l="https://"+t+".unless.com/js/v5/latest/txt.min.js?id="+t+"&domain="+window.location.hostname,(m=o.createElement("link")).href=l,m.rel="preconnect preload",m.as=p,d(m),(a=o.createElement(p)).src=l,d(a),a.onerror=function(){s("")}}(document,"script","802f9be4-64b4-4731-81a3-b85ec2d1fc22");
+        // Identifica il visitatore con l'email
+        Txt.identify('aina.belloni@fiscozen.it', {}, '1507'); // Sostituisci con i valori reali
+
+        // Aggiorna il profilo con i dati aggiuntivi
+        Txt.updateProfile([
+            { key: 'regime_fiscale', value: 'Forfettario', type: 'text', custom: true },
+            { key: 'cassa', value: 'INPS', type: 'text', custom: true }
+        ]);
     </script>
 </head>
 <body>
     <div class="container">
-        <div class="left">
-            <div>
-                <img src="freshchat-logo.png" alt="Freshchat Logo" class="logo">
-                <h1>Freshchat</h1>
-                <p>Deliver faster real-time conversational support</p>
-                <a href="https://visma-810094826908962837.myfreshworks.com/crm/messaging/a/969471019662408/bots/969471019662408" target="_blank">
-                    <button>Freshchat Dashboard</button>
-                </a>
-            </div>
-        </div>
         <div class="middle">
             <div>
                 <img src="unless-logo.png" alt="Unless Logo" class="logo">
@@ -51,17 +46,16 @@ chat='true'>
                 </a>
             </div>
         </div>
-        <div class="right">
-            <div>
-                <img src="intercom-logo.png" alt="Intercom Logo" class="logo">
-                <h1>Intercom</h1>
-                <p>The best AI Agent and AI-first Customer Service Platform</p>
-                <a href="https://app.intercom.com/" target="_blank">
-                    <button>Intercom Dashboard</button>
-                </a>
-            </div>
-        </div>
     </div>
-    <script src='https://cdn.jsdelivr.net/npm/kore-web-sdk@11.9.0/dist/umd/kore-web-sdk-umd-chat.min.js'></script> <script> KoreChatSDK.chatConfig.botOptions.API_KEY_CONFIG.KEY = '086b6af77d094c55bba9faf4bd457cd982000860dc5e43b1a53510914eed3424stfe'; new KoreChatSDK.chatWindow().show(KoreChatSDK.chatConfig); </script>
+
+    <script>
+        window.onload = function() {
+            if (typeof Txt !== 'undefined' && Txt.identify) {
+                Txt.identify('aina.belloni@fiscozen.it', {}, '1507'); 
+            } else {
+                console.warn("Unless script not loaded yet.");
+            }
+        };
+    </script>
 </body>
 </html>
