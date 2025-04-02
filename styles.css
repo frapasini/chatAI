@@ -5,7 +5,7 @@ body {
 }
 
 .left-column {
-    flex: 75%; /* La colonna sinistra occupa il 75% dello spazio disponibile */
+    flex: 70%; /* La colonna sinistra occupa il 75% dello spazio disponibile */
     background-image: url('screenshot.png');
     background-size: cover;
     background-repeat: no-repeat;
@@ -13,7 +13,7 @@ body {
 }
 
 .right-column {
-    flex: 25%; /* La colonna destra occupa il 25% dello spazio disponibile */
+    flex: 30%; /* La colonna destra occupa il 25% dello spazio disponibile */
     background-color: white; /* Sfondo bianco per la sidebar */
     padding: 20px; /* Aggiungi un po' di spazio interno */
     box-sizing: border-box; /* Includi padding e bordo nella larghezza totale */
