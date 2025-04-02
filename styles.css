@@ -1,49 +1,60 @@
 body {
     margin: 0;
-    background-image: url('screenshot.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
     min-height: 100vh;
+    /* Sfondo spostato qui da left-column */
+    background-image: url('screenshot.png');
+    background-size: cover;        /* Copre tutta l'area */
+    background-repeat: no-repeat;  /* Non ripete l'immagine */
+    background-position: center center; /* Opzionale: Centra l'immagine */
+    /* Rimosso display: flex */
+    /* position: relative; */ /* Potrebbe servire se usi % in posizionamenti assoluti figli,
+                                 ma con top/bottom/right 0 non è strettamente necessario */
 }
 
-.left-column {
-    flex: 70%;
-    background-size: cover;
-}
+/* Selettore .left-column RIMOSSO completamente */
 
 .right-column {
-    flex: 30%;
-    background-color: transparent; /* Già presente e corretto */
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column-reverse; /* Elementi impilati dal basso */
-}
+    /* Rimosso flex: 30%; */
 
-#chat-container {
-    flex: 1; /* Occupa lo spazio verticale disponibile */
+    /* NUOVO: Posizionamento assoluto per sovrapporre */
+    position: absolute;
+    top: 0;                   /* Allineato in alto */
+    right: 0;                 /* Allineato a destra */
+    bottom: 0;                /* Si estende fino in fondo */
+    width: 30%;               /* Larghezza desiderata */
+
+    background-color: transparent; /* Mantenuto: sfondo trasparente */
+    box-sizing: border-box;        /* Mantenuto */
+
+    /* Mantenuto: per gestire il layout INTERNO della colonna */
     display: flex;
     flex-direction: column-reverse;
-    background-color: transparent !important;
-    /* background-color: yellow; /* Decommenta per vedere dove si trova */
 }
 
-/* NUOVO: Selettore per il placeholder trasparente */
+/* Le regole per gli elementi INTERNI alla right-column rimangono invariate */
+#chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column-reverse; /* O column */
+}
+
 #placeholder-trasparente {
-    /* È già trasparente di default */
-    /* Aggiungi qui eventuali stili futuri: */
+    /* Stili esistenti o futuri */
     /* Esempio: altezza fissa */
     /* height: 100px; */
-    /* Esempio: padding interno */
-    /* padding: 15px; */
     /* Esempio: bordo per vederlo durante lo sviluppo */
     /* border: 1px dashed grey; */
 }
-/* Fine NUOVO */
+
+/* Se usi ancora la chat Unless, mantieni questa regola */
+#unless-inline-conversation-center {
+    flex: 1;
+    min-height: 0;
+     /* background-color: transparent !important; /* Se vuoi forzare la trasparenza della chat */
+}
 
 
-
-button {
+button { /* Invariato */
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
@@ -53,6 +64,6 @@ button {
     font-size: 16px;
 }
 
-button:hover {
+button:hover { /* Invariato */
     background-color: #0056b3;
 }
