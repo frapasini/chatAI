@@ -20,13 +20,6 @@ body {
     flex-direction: column-reverse; /* Aggiunto: Imposta la direzione verticale */
 }
 
-#unless-inline-conversation-center {
-    flex: 1;       /* Dice al componente di occupare tutto lo spazio flex verticale
-                       disponibile dentro #chat-container */
-    display: flex;         /* Aggiunto: Rende la colonna un contenitore flex */
-    flex-direction: column-reverse; /* Aggiunto: Imposta la direzione verticale */
-}
-
 button {
     background-color: #007bff;
     color: white;
