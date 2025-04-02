@@ -1,7 +1,7 @@
 body {
     margin: 0;
     display: flex;
-    min-height: 100vh; /* Mantieni min-height per assicurarti che il body si estenda */
+    min-height: 100vh;
 }
 
 .left-column {
@@ -13,20 +13,32 @@ body {
 
 .right-column {
     flex: 30%;
-    background-color: transparent;
+    background-color: transparent; /* Già presente e corretto */
     box-sizing: border-box;
-    /* height: 100vh; Rimuovi questa riga */
-    display: flex;         /* Aggiunto: Rende la colonna un contenitore flex */
-    flex-direction: column-reverse; /* Aggiunto: Imposta la direzione verticale */
+    display: flex;
+    flex-direction: column-reverse; /* Elementi impilati dal basso */
 }
 
 #chat-container {
-    flex: 1;       /* Dice al componente di occupare tutto lo spazio flex verticale
-                       disponibile dentro #chat-container */
-    display: flex; /* Aggiunto: Rende il contenitore un flexbox */
-    flex-direction: column-reverse; /* Aggiunto: Imposta la direzione verticale */
-    /*min-height: 0; /* Previene problemi di sizing comuni con flexbox */
+    flex: 1; /* Occupa lo spazio verticale disponibile */
+    display: flex;
+    flex-direction: column-reverse;
+    /* background-color: yellow; /* Decommenta per vedere dove si trova */
 }
+
+/* NUOVO: Selettore per il placeholder trasparente */
+#placeholder-trasparente {
+    /* È già trasparente di default */
+    /* Aggiungi qui eventuali stili futuri: */
+    /* Esempio: altezza fissa */
+    /* height: 100px; */
+    /* Esempio: padding interno */
+    /* padding: 15px; */
+    /* Esempio: bordo per vederlo durante lo sviluppo */
+    /* border: 1px dashed grey; */
+}
+/* Fine NUOVO */
+
 
 button {
     background-color: #007bff;
