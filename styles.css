@@ -23,7 +23,6 @@ body {
 #unless-inline-conversation-center {
     flex: 1;       /* Dice al componente di occupare tutto lo spazio flex verticale
                        disponibile dentro #chat-container */
-    min-height: 0; /* Previene problemi di sizing comuni con flexbox */
 }
 
 button {
