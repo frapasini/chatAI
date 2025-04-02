@@ -9,7 +9,7 @@ body {
     background-image: url('screenshot.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100%; /* Assicurati che la colonna occupi l'intera altezza */
+    height: 100vh; /* Assicurati che la colonna occupi l'intera altezza */
 }
 
 .right-column {
@@ -17,7 +17,7 @@ body {
     background-color: white; /* Sfondo bianco per la sidebar */
     padding: 20px; /* Aggiungi un po' di spazio interno */
     box-sizing: border-box; /* Includi padding e bordo nella larghezza totale */
-    height: 100%; /* Assicurati che la colonna occupi l'intera altezza */
+    height: 100vh; /* Assicurati che la colonna occupi l'intera altezza */
 }
 
 button {
