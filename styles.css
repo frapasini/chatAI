@@ -10,7 +10,7 @@ body {
 .right-column {
     position: absolute;
     right: 0; bottom: 0;
-    width: 30%;
+    width: 35%;
     background-color: transparent; /* Sfondo trasparente */
     box-sizing: border-box;
     display: flex;
