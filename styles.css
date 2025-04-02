@@ -1,7 +1,7 @@
 body {
     margin: 0; /* Rimuovi il margine predefinito del body */
     display: flex; /* Utilizza flexbox per il layout a colonne */
-    height: 100vh; /* Assicurati che il body occupi l'intera altezza della viewport */
+    min-height: 100vh; /* Assicurati che il body occupi l'intera altezza della viewport */
 }
 
 .left-column {
@@ -11,7 +11,7 @@ body {
     background-repeat: no-repeat;
     height: 100vh; /* Assicurati che la colonna occupi l'intera altezza */
 }
-
+ 
 .right-column {
     flex: 30%; /* La colonna destra occupa il 25% dello spazio disponibile */
     background-color: white; /* Sfondo bianco per la sidebar */
