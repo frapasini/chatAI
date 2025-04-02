@@ -1,9 +1,36 @@
 body {
     background-image: url('screenshot.png');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: cover; /* Copre l'intera area */
+    background-repeat: no-repeat; /* Non ripete l'immagine */
+    background-attachment: fixed; /* Fissa lo sfondo anche durante lo scroll (utile se la pagina cresce) */
+    background-position: center center; /* Centra l'immagine */
+    margin: 0; /* Rimuove i margini predefiniti del browser */
+    font-family: sans-serif; /* Imposta un font di base (opzionale) */
+    /* Non è necessario aggiungere padding-right qui perché la sidebar sarà sovrapposta */
+    height: 100vh; /* Assicura che il body occupi almeno l'intera altezza visibile */
 }
 
+#sidebar {
+    position: fixed; /* Posizionamento fisso rispetto alla finestra del browser */
+    top: 0;          /* Allineato al bordo superiore */
+    right: 0;         /* Allineato al bordo destro */
+    width: 25%;       /* Larghezza del 25% dello schermo */
+    height: 100%;      /* Altezza del 100% dello schermo */
+    background-color: #ffffff; /* Sfondo bianco (puoi cambiarlo, es: rgba(255,255,255,0.9) per trasparenza) */
+    padding: 20px;    /* Spaziatura interna */
+    box-sizing: border-box; /* Fa sì che padding e border siano inclusi nella width/height */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Ombra leggera a sinistra per separazione visiva */
+    overflow-y: auto; /* Aggiunge una barra di scorrimento verticale SE il contenuto della sidebar è troppo alto */
+    z-index: 1000;    /* Assicura che la sidebar sia sopra altri elementi */
+}
+
+/* Stili per il contenuto della sidebar (Esempio) */
+#sidebar h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+/* Stili bottone (già presenti) */
 button {
     background-color: #007bff;
     color: white;
@@ -17,3 +44,7 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+/* Non hai bisogno di un #main-content separato se la sidebar è in overlay. */
+/* Il contenuto principale (se ci fosse) starebbe semplicemente nel body */
+/* e verrebbe parzialmente coperto dalla sidebar sulla destra. */

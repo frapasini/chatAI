@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="it"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Unless</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
-   
-    <!-- <script src="https://eu.fw-cdn.com/13036459/987023.js" chat="true"></script> -->
+
     <script data-unless='1.2' data-installer='snippet'>
         !function(o,p,t,i,m,a,l){function s(e){o.documentElement.style.opacity=e}function d(e){i.parentNode.insertBefore(e,i)}
         s((window.TxtOptions||{}).asyncMode?"":0),setTimeout(function(){s("")},3e3),
@@ -20,6 +18,11 @@
 
 </head>
 <body>
+    <div id="sidebar">
+        <h2>Chat</h2>
+        <p>Qui verrà inserita la chat.</p>
+        </div>
+
     <script>
         function waitForUnless(callback, attempts = 10, delay = 500) {
             if (typeof Txt !== 'undefined' && Txt.identify) {
@@ -31,7 +34,7 @@
                 console.error("Unless script failed to load.");
             }
         }
-    
+
         window.onload = function() {
             waitForUnless(() => {
                 Txt.updateProfile([
@@ -46,6 +49,6 @@
             });
         };
     </script>
-    
+
 </body>
 </html>
