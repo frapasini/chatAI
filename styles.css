@@ -27,7 +27,7 @@ body {
     /* NUOVO: Rendi #chat-container un contenitore flex */
     display: flex;
     /* Di solito column è corretto per far espandere un singolo figlio verticalmente */
-    flex-direction: column;
+    flex-direction: column-reverse;
     /* Se vuoi che anche il contenuto INTERNO alla chat vada dal basso verso l'alto,
        potresti provare column-reverse qui, ma inizia con column. */
 
