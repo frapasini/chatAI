@@ -14,6 +14,7 @@ body {
     background-color: transparent; /* Sfondo trasparente */
     box-sizing: border-box;
     display: flex;
+    min-height: 100vh;
     flex-direction: column-reverse; /* Ordine dal basso verso l'alto, CONFERMATO CHE FUNZIONA */
     /* border: 2px solid blue; */ /* Rimosso bordo debug */
 }
