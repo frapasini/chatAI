@@ -23,6 +23,7 @@ body {
     flex: 1; /* Occupa lo spazio verticale disponibile */
     display: flex;
     flex-direction: column-reverse;
+    background-color: transparent !important;
     /* background-color: yellow; /* Decommenta per vedere dove si trova */
 }
 
@@ -39,10 +40,6 @@ body {
 }
 /* Fine NUOVO */
 
-#unless-inline-conversation-center {
-    /* ...le altre regole come flex: 1, min-height: 0 ... */
-    background-color: transparent !important;
-}
 
 
 button {
