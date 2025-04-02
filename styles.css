@@ -17,17 +17,22 @@ body {
     box-sizing: border-box;
     /* height: 100vh; Rimuovi questa riga */
     display: flex;         /* Aggiunto: Rende la colonna un contenitore flex */
-    flex-direction: column; /* Aggiunto: Imposta la direzione verticale */
+    flex-direction: column-reverse; /* Aggiunto: Imposta la direzione verticale */
 }
 
-/* Aggiungi queste regole per il contenitore della chat */
 #chat-container {
-    flex: 1; /* Fa sì che questo div occupi tutto lo spazio verticale disponibile */
-    overflow-y: auto; /* Aggiunge una scrollbar verticale se necessario */
-    /* Potrebbe essere necessario aggiungere display:flex qui se il
-       webcomponent stesso non occupa tutto lo spazio automaticamente */
-    /* display: flex; */
-    /* flex-direction: column; */
+    flex: 1; /* Occupa lo spazio disponibile in .right-column */
+    overflow-y: auto; /* Scrollbar interna se serve */
+
+    /* NUOVO: Rendi #chat-container un contenitore flex */
+    display: flex;
+    /* Di solito column è corretto per far espandere un singolo figlio verticalmente */
+    flex-direction: column;
+    /* Se vuoi che anche il contenuto INTERNO alla chat vada dal basso verso l'alto,
+       potresti provare column-reverse qui, ma inizia con column. */
+
+    /* Utile per debug: */
+    /* border: 1px solid red; */
 }
 
 button {
