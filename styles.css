@@ -17,13 +17,15 @@ body {
     box-sizing: border-box;
     /* height: 100vh; Rimuovi questa riga */
     display: flex;         /* Aggiunto: Rende la colonna un contenitore flex */
-    flex-direction: column; /* Aggiunto: Imposta la direzione verticale */
+    flex-direction: column-reverse; /* Aggiunto: Imposta la direzione verticale */
 }
 
-#unless-inline-conversation-center {
+#chat-container {
     flex: 1;       /* Dice al componente di occupare tutto lo spazio flex verticale
                        disponibile dentro #chat-container */
-    min-height: 0; /* Previene problemi di sizing comuni con flexbox */
+    display: flex; /* Aggiunto: Rende il contenitore un flexbox */
+    flex-direction: column-reverse; /* Aggiunto: Imposta la direzione verticale */
+    /*min-height: 0; /* Previene problemi di sizing comuni con flexbox */
 }
 
 button {
