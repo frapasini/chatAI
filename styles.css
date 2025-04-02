@@ -23,7 +23,7 @@ body {
 #chat-container {
     flex: 1; /* Occupa lo spazio disponibile in .right-column */
     overflow-y: auto; /* Scrollbar interna se serve */
-
+    height: 100vh;
     /* NUOVO: Rendi #chat-container un contenitore flex */
     display: flex;
     /* Di solito column è corretto per far espandere un singolo figlio verticalmente */
