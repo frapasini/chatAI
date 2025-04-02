@@ -7,12 +7,7 @@
     <title>Unless</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Custom Identifier for Unless -->
-    <script>
-        window.TxtOptions = { customIdentifier: '1507' };
-    </script> 
-    
+   
     <!-- <script src="https://eu.fw-cdn.com/13036459/987023.js" chat="true"></script> -->
     <script data-unless='1.2' data-installer='snippet'>
         !function(o,p,t,i,m,a,l){function s(e){o.documentElement.style.opacity=e}function d(e){i.parentNode.insertBefore(e,i)}
@@ -23,9 +18,6 @@
         }(document,"script","802f9be4-64b4-4731-81a3-b85ec2d1fc22");
     </script>
 
-    <!-- <script>
-        Txt.identify('aina.belloni@fiscozen.it'); 
-    </script> -->
 </head>
 <body>
     <script>
@@ -42,7 +34,11 @@
     
         window.onload = function() {
             waitForUnless(() => {
-                Txt.identify('aina.belloni@fiscozen.it', {}, '1507'); 
+                Txt.updateProfile([
+                    {key: 'regime', value: 'forfettario', type: 'text', custom: true}
+                    ])
+                Txt.set('chatMetadata', { name: 'Aina Belloni', email: 'aina.belloni@fiscozen.it' })
+
                 console.log("Visitor identified successfully.");
             });
         };
