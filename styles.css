@@ -20,6 +20,15 @@ body {
     flex-direction: column; /* Aggiunto: Imposta la direzione verticale */
 }
 
+/* Aggiungi queste regole per il contenitore della chat */
+#chat-container {
+    flex: 1; /* Fa sì che questo div occupi tutto lo spazio verticale disponibile */
+    overflow-y: auto; /* Aggiunge una scrollbar verticale se necessario */
+    /* Potrebbe essere necessario aggiungere display:flex qui se il
+       webcomponent stesso non occupa tutto lo spazio automaticamente */
+    /* display: flex; */
+    /* flex-direction: column; */
+}
 
 button {
     background-color: #007bff;
