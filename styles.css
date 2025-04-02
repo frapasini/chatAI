@@ -1,58 +1,53 @@
 body {
     margin: 0;
     min-height: 100vh;
-    /* Sfondo spostato qui da left-column */
     background-image: url('screenshot.png');
-    background-size: cover;        /* Copre tutta l'area */
-    background-repeat: no-repeat;  /* Non ripete l'immagine */
-    background-position: center center; /* Opzionale: Centra l'immagine */
-    /* Rimosso display: flex */
-    /* position: relative; */ /* Potrebbe servire se usi % in posizionamenti assoluti figli,
-                                 ma con top/bottom/right 0 non è strettamente necessario */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
-
-/* Selettore .left-column RIMOSSO completamente */
 
 .right-column {
-    /* Rimosso flex: 30%; */
-
-    /* NUOVO: Posizionamento assoluto per sovrapporre */
     position: absolute;
-    top: 0;                   /* Allineato in alto */
-    right: 0;                 /* Allineato a destra */
-    bottom: 0;                /* Si estende fino in fondo */
-    width: 30%;               /* Larghezza desiderata */
-
-    background-color: transparent; /* Mantenuto: sfondo trasparente */
-    box-sizing: border-box;        /* Mantenuto */
-
-    /* Mantenuto: per gestire il layout INTERNO della colonna */
+    top: 0; right: 0; bottom: 0;
+    width: 30%;
+    background-color: transparent; /* Sfondo trasparente */
+    box-sizing: border-box;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column-reverse; /* Ordine dal basso verso l'alto, CONFERMATO CHE FUNZIONA */
+    /* border: 2px solid blue; */ /* Rimosso bordo debug */
 }
 
-/* Le regole per gli elementi INTERNI alla right-column rimangono invariate */
 #chat-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column-reverse; /* O column */
+    flex: 1;          /* <<--- RIATTIVATO! Fa espandere il contenitore */
+    min-height: 0;    /* Buona pratica quando si usa flex: 1 */
+    display: flex;    /* Per gestire il componente chat interno */
+    flex-direction: column-reverse; /* O 'column-reverse' se preferisci l'ordine inverso anche DENTRO la chat */
+    /* border: 2px solid red; */ /* Rimosso bordo debug */
+    /* background-color: rgba(255, 0, 0, 0.1); */ /* Rimosso sfondo debug */
+    overflow: hidden; /* Nasconde eventuale contenuto che sborda da questo div */
+                      /* Potrebbe servire overflow-y: auto se il contenuto INTERNO
+                         a chat-container (ma non la chat stessa) dovesse scrollare */
 }
 
 #placeholder-trasparente {
-    /* Stili esistenti o futuri */
-    /* Esempio: altezza fissa */
-    /* height: 100px; */
-    /* Esempio: bordo per vederlo durante lo sviluppo */
-    /* border: 1px dashed grey; */
+    /* Dagli l'altezza che desideri per lo spazio in fondo */
+    height: 100px; /* Esempio: 100px di spazio in fondo */
+    /* Se non vuoi spazio visibile per ora, commenta o metti height: 0; */
+    /* border: 2px solid orange; */ /* Rimosso bordo debug */
+    /* background-color: rgba(255, 165, 0, 0.1); */ /* Rimosso sfondo debug */
+    overflow: auto; /* Aggiunge scrollbar se il contenuto supera l'altezza fissa */
+    flex-shrink: 0; /* Impedisce che si restringa se lo spazio è poco */
 }
 
-/* Se usi ancora la chat Unless, mantieni questa regola */
+/* Mantieni la regola per il componente chat effettivo */
 #unless-inline-conversation-center {
-    flex: 1;
+    flex: 1;       /* Fa sì che la chat riempia #chat-container */
     min-height: 0;
-     /* background-color: transparent !important; /* Se vuoi forzare la trasparenza della chat */
+    /* border: 1px solid green; */ /* Rimosso bordo debug */
+    /* background-color: rgba(0, 128, 0, 0.1); */ /* Rimosso sfondo debug */
+     /* background-color: transparent !important; /* Se vuoi forzare sfondo trasparente chat */
 }
-
 
 button { /* Invariato */
     background-color: #007bff;
