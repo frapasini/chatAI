@@ -13,7 +13,7 @@ body {
 
 .right-column {
     flex: 30%;
-    background-color: white;
+    background-color: transparent;
     box-sizing: border-box;
     /* height: 100vh; Rimuovi questa riga */
     display: flex;         /* Aggiunto: Rende la colonna un contenitore flex */
