@@ -5,14 +5,14 @@ body {
 }
 
 .left-column {
-    flex: 80%;
+    flex: 70%;
     background-image: url('screenshot.png');
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .right-column {
-    flex: 20%;
+    flex: 30%;
     background-color: white;
     box-sizing: border-box;
     /* height: 100vh; Rimuovi questa riga */
