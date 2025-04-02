@@ -1,23 +1,21 @@
 body {
-    margin: 0; /* Rimuovi il margine predefinito del body */
-    display: flex; /* Utilizza flexbox per il layout a colonne */
-    min-height: 100vh; /* Assicurati che il body occupi l'intera altezza della viewport */
+    margin: 0;
+    display: flex;
+    min-height: 100vh; /* Mantieni min-height per assicurarti che il body si estenda */
 }
 
 .left-column {
-    flex: 70%; /* La colonna sinistra occupa il 75% dello spazio disponibile */
+    flex: 70%;
     background-image: url('screenshot.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh; /* Assicurati che la colonna occupi l'intera altezza */
 }
- 
+
 .right-column {
-    flex: 30%; /* La colonna destra occupa il 25% dello spazio disponibile */
-    background-color: white; /* Sfondo bianco per la sidebar */
-    padding: 20px; /* Padding per la colonna destra */
-    box-sizing: border-box; /* Includi padding e bordo nella larghezza totale */
-    height: 100vh; /* Assicurati che la colonna occupi l'intera altezza */
+    flex: 30%;
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 button {
