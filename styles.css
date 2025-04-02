@@ -14,7 +14,6 @@ body {
 .right-column {
     flex: 30%;
     background-color: white;
-    padding: 20px;
     box-sizing: border-box;
     height: 100vh; /* Assicura che la colonna destra occupi l'intera altezza */
 }
