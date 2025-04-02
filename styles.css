@@ -22,17 +22,16 @@ body {
 
 #chat-container {
     flex: 1; /* Occupa lo spazio disponibile in .right-column */
-    overflow-y: auto; /* Scrollbar interna se serve */
-    height: 100vh;
-    /* NUOVO: Rendi #chat-container un contenitore flex */
-    display: flex;
-    /* Di solito column è corretto per far espandere un singolo figlio verticalmente */
-    flex-direction: column-reverse;
-    /* Se vuoi che anche il contenuto INTERNO alla chat vada dal basso verso l'alto,
-       potresti provare column-reverse qui, ma inizia con column. */
+    overflow-y: auto;
+    /* NON aggiungere display: flex qui in questa strategia */
+    /* border: 1px solid blue; */ /* Utile per debug */
+}
 
-    /* Utile per debug: */
-    /* border: 1px solid red; */
+/* Targetizza il web component (trova il selettore come descritto prima) */
+#chat-container > * {
+    height: 100%; /* Forza l'altezza al 100% del padre (#chat-container) */
+    display: block; /* O 'flex' se necessario per il layout interno del componente */
+    box-sizing: border-box; /* Buona pratica per includere padding/border nell'altezza */
 }
 
 button {
