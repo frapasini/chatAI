@@ -14,7 +14,6 @@ body {
     background-color: transparent; /* Sfondo trasparente */
     box-sizing: border-box;
     display: flex;
-    min-height: 100vh;
     flex-direction: column-reverse; /* Ordine dal basso verso l'alto, CONFERMATO CHE FUNZIONA */
     /* border: 2px solid blue; */ /* Rimosso bordo debug */
 }
@@ -43,7 +42,6 @@ body {
 
 /* Mantieni la regola per il componente chat effettivo */
 #unless-inline-conversation-center {
-    flex: 1;       /* Fa sì che la chat riempia #chat-container */
     min-height: 0;
     /* border: 1px solid green; */ /* Rimosso bordo debug */
     /* background-color: rgba(0, 128, 0, 0.1); */ /* Rimosso sfondo debug */
