@@ -39,6 +39,11 @@ body {
 }
 /* Fine NUOVO */
 
+#unless-inline-conversation-center {
+    /* ...le altre regole come flex: 1, min-height: 0 ... */
+    background-color: transparent !important;
+}
+
 
 button {
     background-color: #007bff;
