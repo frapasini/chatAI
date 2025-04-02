@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,19 +16,15 @@
         (a=o.createElement(p)).src=l,d(a),a.onerror=function(){s("")}
         }(document,"script","802f9be4-64b4-4731-81a3-b85ec2d1fc22");
     </script>
-    
+
 </head>
 
 <body>
-    <div id="main-content">
-        <h1>Contenuto Principale</h1>
-        <p>Questa area occupa il 75% dello schermo.</p>
+    <div class="left-column"></div>
+    <div class="right-column">
+        <div id="chat-container">
+            </div>
     </div>
-
-    <div id="sidebar">
-        <h2>Chat</h2>
-        <p>Qui verrà inserita la chat.</p>
-        </div>
 
     <script>
         function waitForUnless(callback, attempts = 10, delay = 500) {
@@ -49,7 +45,7 @@
                     {key: 'Cassa', value: 'INPS COM', type: 'text', custom: true},
                     {key: 'Tax', value: 'Michele Avella', type: 'text', custom: true},
                     {key: 'Data Inizio', value: '2025-01-15', type: 'text', custom: true}
-                    ])
+                ])
                 Txt.set('chatMetadata', { name: 'Aina Belloni', email: 'aina.belloni@fiscozen.it', regime: 'Forfettario', cassa: 'INPS COM', tax: 'Michele Avella', dataInizio: '2025-01-15' });
 
                 console.log("Visitor identified successfully.");

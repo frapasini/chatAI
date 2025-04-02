@@ -1,53 +1,25 @@
-/* Impostazioni base per far funzionare Grid a tutta altezza */
-html {
-    height: 100%; /* Permette al body di avere altezza 100% */
+body {
+    margin: 0; /* Rimuovi il margine predefinito del body */
+    display: flex; /* Utilizza flexbox per il layout a colonne */
+    height: 100vh; /* Assicurati che il body occupi l'intera altezza della viewport */
 }
 
-body {
-    /* Impostazioni Sfondo (restano sul body) */
+.left-column {
+    flex: 75%; /* La colonna sinistra occupa il 75% dello spazio disponibile */
     background-image: url('screenshot.png');
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Opzionale: fissa lo sfondo durante scroll */
-    background-position: center center;
-
-    /* Impostazioni Layout Grid */
-    display: grid; /* Attiva CSS Grid */
-    grid-template-columns: 3fr 1fr; /* Definisce 2 colonne: 3 parti (75%) e 1 parte (25%) */
-    /* Alternativa: grid-template-columns: 75% 25%; */
-    /* Alternativa: grid-template-columns: auto 25%; */
-    height: 100vh; /* Altezza totale della finestra */
-    margin: 0; /* Rimuove margini default */
-    font-family: sans-serif; /* Font di base */
-    overflow: hidden; /* Impedisce lo scroll sul body stesso, lo gestiranno le colonne */
+    height: 100%; /* Assicurati che la colonna occupi l'intera altezza */
 }
 
-#main-content {
-    /* La colonna principale eredita lo sfondo dal body */
-    padding: 20px; /* Spaziatura interna */
-    box-sizing: border-box; /* Include padding nel calcolo dimensioni */
-    height: 100vh; /* Occupa tutta l'altezza disponibile nella griglia */
-    overflow-y: auto; /* Scroll verticale se il contenuto eccede */
+.right-column {
+    flex: 25%; /* La colonna destra occupa il 25% dello spazio disponibile */
+    background-color: white; /* Sfondo bianco per la sidebar */
+    padding: 20px; /* Aggiungi un po' di spazio interno */
+    box-sizing: border-box; /* Includi padding e bordo nella larghezza totale */
+    height: 100%; /* Assicurati che la colonna occupi l'intera altezza */
 }
 
-#sidebar {
-    /* La colonna laterale */
-    background-color: #ffffff; /* Sfondo bianco (o altro colore) per coprire l'immagine del body */
-    padding: 20px; /* Spaziatura interna */
-    box-sizing: border-box; /* Include padding nel calcolo dimensioni */
-    height: 100vh; /* Occupa tutta l'altezza disponibile nella griglia */
-    overflow-y: auto; /* Scroll verticale se il contenuto eccede */
-    /* Non serve più position: fixed o z-index */
-     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Ombra per separazione (opzionale) */
-}
-
-/* Stili Esempio per contenuto sidebar */
-#sidebar h2 {
-    margin-top: 0;
-    color: #333;
-}
-
-/* Stili bottone (invariati) */
 button {
     background-color: #007bff;
     color: white;
