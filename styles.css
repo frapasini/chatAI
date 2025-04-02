@@ -14,7 +14,7 @@ body {
  
 .right-column {
     flex: 30%; /* La colonna destra occupa il 25% dello spazio disponibile */
-    background-color: transparent; /* Sfondo bianco per la sidebar */
+    background-color: white; /* Sfondo bianco per la sidebar */
     padding: 20px; /* Padding per la colonna destra */
     box-sizing: border-box; /* Includi padding e bordo nella larghezza totale */
     height: 100vh; /* Assicurati che la colonna occupi l'intera altezza */
