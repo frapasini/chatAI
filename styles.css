@@ -5,7 +5,7 @@ body {
 }
 
 .left-column {
-    flex: 70%;
+    flex: 80%;
     background-image: url('screenshot.png');
     background-size: cover;
     background-repeat: no-repeat;
