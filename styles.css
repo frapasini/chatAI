@@ -1,14 +1,14 @@
 body {
     margin: 0;
+    background-image: url('screenshot.png');
+    background-repeat: no-repeat;
     display: flex;
     min-height: 100vh;
 }
 
 .left-column {
     flex: 70%;
-    background-image: url('screenshot.png');
     background-size: cover;
-    background-repeat: no-repeat;
 }
 
 .right-column {
