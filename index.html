@@ -43,14 +43,14 @@
         window.onload = function() {
             waitForUnless(() => {
                 Txt.updateProfile([
-                {key: 'firstName', value: 'Aina', type: 'text', custom: true},    
-                {key: 'lastName', value: 'Belloni', type: 'text', custom: true},    
+                {key: 'firstName', value: 'Michele', type: 'text', custom: true},    
+                {key: 'lastName', value: 'Avella', type: 'text', custom: true},    
                 {key: 'Regime', value: 'Forfettario', type: 'text', custom: true},
                     {key: 'Cassa', value: 'INPS COM', type: 'text', custom: true},
-                    {key: 'Tax', value: 'Michele Avella', type: 'text', custom: true},
+                    {key: 'Tax', value: 'Mario Rossi', type: 'text', custom: true},
                     {key: 'Data Inizio', value: '2025-01-15', type: 'text', custom: true}
                 ])
-                Txt.set('chatMetadata', {firstName: 'Aina', lastName: 'Belloni', email: 'aina.belloni@fiscozen.it', regime: 'Forfettario', dataInizio: '2025-01-15' });
+                Txt.set('chatMetadata', {firstName: 'Michele', lastName: 'Avella', email: 'michele.avella@fiscozen.it', regime: 'Forfettario', dataInizio: '2025-01-15' });
 
                 console.log("Visitor identified successfully.");
             });
