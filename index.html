@@ -42,19 +42,32 @@
 
         window.onload = function() {
             waitForUnless(() => {
+
+                // Parametri per creazione di audiences e training AI
                 Txt.updateProfile([
-                {key: 'firstName', value: 'AIna', type: 'text', custom: true},    
-                {key: 'lastName', value: 'Belloni', type: 'text', custom: true},     
-                {key: 'email', value: 'aina.belloni@fiscozen.it', type: 'text', custom: true},    
-                {key: 'squad_id', value: '01-Amelis', type: 'text', custom: true}
-                //    {key: 'Cassa', value: 'INPS COM', type: 'text', custom: true},
-                //    {key: 'Tax', value: 'Marcello Olivetti', type: 'text', custom: true},
-                //    {key: 'Data Inizio', value: '2025-01-15', type: 'text', custom: true}
+                {key: 'user_id', value: '1507', type: 'text', custom: true},    
+                {key: 'firstName', value: 'Mario', type: 'text', custom: true},    
+                {key: 'lastName', value: 'Rossi', type: 'text', custom: true},     
+                {key: 'email', value: 'mario.rossi@fiscozen.it', type: 'text', custom: true},    
+                {key: 'fiscal_regime', value: 'Forfettario', type: 'text', custom: true},
+                {key: 'fiscozen_insider', value: 'true', type: 'text', custom: true},    
+                {key: 'first_payment_date', value: '2025-01-15', type: 'text', custom: true}
                 ])
-                // Txt.set('chatMetadata', {firstName: 'Francesco', lastName: 'Pasini', 
-                // email: 'fra.pasini@fiscozen.it', regime: 'Semplificato', dataInizio: '2025-01-15', 
-                // tax: 'Gabriella', cassa: 'INPS COM', squad_id: '01-Amelis'
-                // });
+                
+                // Identificazione del visitatore e invio a Freshchat
+                Txt.set('chatMetadata', {
+                    user_id: '1507', 
+                    firstName: 'Mario', 
+                    lastName: 'Rossi', 
+                    email: 'mario.rossi@fiscozen.it', 
+                    phone: '+393456789012',
+                    payment_status: 'active',
+                    fiscal_regime: 'Forfettario', 
+                    welfare_institution: 'GS INPS',
+                    ateco_1: '73.11.02',
+                    ssn: 'RSSMRA85M01H501Z',
+                    consultant_squad_id: '01-Amelis'
+                });
 
                 console.log("Visitor identified successfully.");
             });
