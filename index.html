@@ -8,6 +8,12 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
 
+    <script>
+        // Set the custom identifier before the Unless snippet loads
+        window.TxtOptions = { customIdentifier: '1507' };
+    </script>
+
+
     <script data-unless='1.2' data-installer='snippet'>
         !function(o,p,t,i,m,a,l){function s(e){o.documentElement.style.opacity=e}function d(e){i.parentNode.insertBefore(e,i)}
         s((window.TxtOptions||{}).asyncMode?"":0),setTimeout(function(){s("")},3e3),
@@ -43,7 +49,7 @@
         window.onload = function() {
             waitForUnless(() => {
 
-                // Parametri per creazione di audiences e training AI
+                // Parameters needed to create audiences and train AI 
                 Txt.updateProfile([
                 {key: 'user_id', value: '1507', type: 'text', custom: true},    
                 {key: 'firstName', value: 'Mario', type: 'text', custom: true},    
@@ -54,7 +60,7 @@
                 {key: 'first_payment_date', value: '2025-01-15', type: 'text', custom: true}
                 ])
                 
-                // Identificazione del visitatore e invio a Freshchat
+                // Identification of the customer and sent to Freshchat
                 Txt.set('chatMetadata', {
                     user_id: '1507', 
                     firstName: 'Mario', 
