@@ -54,14 +54,19 @@
                 {key: 'user_id', value: '2502', type: 'text', custom: true},    
                 {key: 'firstName', value: 'Mario', type: 'text', custom: true},    
                 {key: 'lastName', value: 'Rossi', type: 'text', custom: true},     
-                {key: 'email', value: 'mario.rossi@fiscozen.it', type: 'text', custom: true},    
+                {key: 'email', value: 'mario.rossi@fiscozen.it', type: 'text', custom: true},     
+                {key: 'payment_status', value: 'active', type: 'text', custom: true},
                 {key: 'fiscal_regime', value: 'Forfettario', type: 'text', custom: true},
-                {key: 'fiscozen_insider', value: 'true', type: 'text', custom: true},    
-                {key: 'first_payment_date', value: '2025-01-15', type: 'text', custom: true}
+                {key: 'welfare_institution', value: 'GS INPS', type: 'text', custom: true},      
+                {key: 'ateco_1', value: '73.11.02', type: 'text', custom: true},      
+                {key: 'consultant_squad_id', value: '01-Amelis', type: 'text', custom: true}
+                //{key: 'is_fiscozeninsider', value: 'true', type: 'text', custom: true},     
+                //{key: 'first_payment_date', value: '2025-01-15', type: 'text', custom: true},
                 ])
                 
                 // Identification of the customer and sent to Freshchat
                 Txt.set('chatMetadata', {
+                    reference_id: '2502',
                     user_id: '2502', 
                     firstName: 'Mario', 
                     lastName: 'Rossi', 
