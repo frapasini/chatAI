@@ -19,73 +19,37 @@
 </head>
 <body>
     <!-- 
-      This is the recommended Freshchat implementation.
-      1. It sets the externalId on init to prevent user conflicts.
-      2. It uses the widget:loaded event to know when the API is ready.
-      3. It checks if the user already exists before setting properties.
-      4. It captures the restoreId for new users to maintain conversation history.
+      JWT Authentication Flow for Freshchat
+      1. Your server generates a JWT token for the logged-in user.
+      2. The token is passed to the widget config using 'jwtAuthToken'.
+      3. The widget initializes and authenticates the user automatically.
+      4. All user properties are set from the token, not the client-side script.
     -->
 
-    <!-- Freshchat Configuration -->
+    <!-- Freshchat Configuration with JWT -->
     <script>
-      // In a real application, you would fetch this from your database for the logged-in user.
-      var restoreId = null; 
+      // In a real application, this token would be dynamically generated on your server
+      // for the logged-in user and passed to this page.
+      var serverGeneratedJwtToken = "vM8w2Uo7bHzckS2Kr+YOAYbejovIZUEDxfvHGLv0vho=";
 
       window.fcWidgetMessengerConfig = {
-        externalId: "2502",      // User's unique ID in your system
-        restoreId: restoreId ? restoreId : null
+        jwtAuthToken: serverGeneratedJwtToken
       };
     </script>
 
     <!-- Freshchat Widget Script -->
     <script src='//eu.fw-cdn.com/13069928/1021706.js' chat='true'></script>
 
-    <!-- Freshchat User Initialization Script -->
+    <!-- Script to open the widget after it loads -->
     <script>
       window.fwcrm.on('widget:loaded', function() {
-        console.log("Freshchat widget:loaded event fired.");
-
-        window.fcWidget.user.get(function(resp) {
-          var status = resp && resp.status;
-          var data = resp && resp.data;
-
-          // The user.get() call returns a 404 status if the user doesn't exist yet.
-          // We only set properties for brand-new users.
-          console.log(status);
-          if (status === 404) {
-            console.log("User not found on Freshchat, creating new user...");
-            window.fcWidget.user.setProperties({
-              firstName: "Mario",
-              lastName: "Rossi",
-              email: "mario.rossi@fiscozen.it",
-              phone: "+393456789012",
-              payment_status: "active",
-              fiscal_regime: "Forfettario",
-              welfare_institution: "GS INPS",
-              ateco_1: "73.11.02",
-              ssn: "RSSMRA85M01H501Z",
-              consultant_squad_id: "01-Amelis"
-            });
-
-            // Listen for the user:created event to get the new restoreId
-            window.fcWidget.on('user:created', function(resp) {
-              var status = resp && resp.status;
-              var data = resp && resp.data;
-              if (status === 200 && data.restoreId) {
-                console.log("User created successfully. New restoreId:", data.restoreId);
-                // In a real application, you would now save this data.restoreId to your database
-                // associated with the user "2502" for future sessions.
-              }
-            });
-          } else {
-            console.log("Existing user found on Freshchat, session restored.");
-          }
-
-          // Always open the widget
-          window.fcWidget.open();
-          console.log("Widget opened automatically.");
-        });
-      }); 
+        console.log("Freshchat widget loaded. User was authenticated via JWT.");
+        
+        // No need to set properties here; they are all read from the JWT token.
+        // We just need to open the widget.
+        window.fcWidget.open();
+        console.log("Widget opened automatically.");
+      });
     </script>
 </body>
 </html>
