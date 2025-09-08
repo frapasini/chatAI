@@ -51,6 +51,7 @@
 
           // The user.get() call returns a 404 status if the user doesn't exist yet.
           // We only set properties for brand-new users.
+          console.log(status);
           if (status === 404) {
             console.log("User not found on Freshchat, creating new user...");
             window.fcWidget.user.setProperties({
