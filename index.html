@@ -56,34 +56,39 @@
     
     <!-- User Identification Script -->
     <script>
-        // Wait for the Freshchat script to load
-        window.fwcrm.on("user:created", function () {
-            window.fcWidget.setExternalId("2502");
-            window.fcWidget.user.setFirstName("Mario");
-            window.fcWidget.user.setLastName("Rossi");
-            window.fcWidget.user.setEmail("mario.rossi@fiscozen.it");
-            window.fcWidget.user.setPhone("+393456789012");
-            window.fcWidget.user.setProperties({
-                user_id: "2502",
-                payment_status: "active",
-                fiscal_regime: "Forfettario",
-                welfare_institution: "GS INPS",
-                ateco_1: "73.11.02",
-                ssn: "RSSMRA85M01H501Z",
-                consultant_squad_id: "01-Amelis"
-            });
-            console.log("User identified successfully in Freshchat.");
-        });
+        // This function polls until the Freshchat widget is ready, then identifies the user.
+        function initializeFreshchat() {
+            if (typeof window.fcWidget !== 'undefined') {
+                // Once the widget is ready, identify the user
+                console.log("Freshchat widget is ready. Identifying user...");
+                window.fcWidget.setExternalId("2502");
+                window.fcWidget.user.setFirstName("Mario");
+                window.fcWidget.user.setLastName("Rossi");
+                window.fcWidget.user.setEmail("mario.rossi@fiscozen.it");
+                window.fcWidget.user.setPhone("+393456789012");
+                window.fcWidget.user.setProperties({
+                    user_id: "2502",
+                    payment_status: "active",
+                    fiscal_regime: "Forfettario",
+                    welfare_institution: "GS INPS",
+                    ateco_1: "73.11.02",
+                    ssn: "RSSMRA85M01H501Z",
+                    consultant_squad_id: "01-Amelis"
+                });
+                console.log("User identification data sent to Freshchat.");
 
-        // Auto-open the widget after it loads
-        window.onload = function() {
-            setTimeout(function() {
-                if (window.fcWidget && window.fcWidget.open) {
-                    window.fcWidget.open();
-                    console.log("Freshchat widget opened automatically.");
-                }
-            }, 2000);
-        };
+                // Auto-open the widget
+                window.fcWidget.open();
+                console.log("Freshchat widget opened automatically.");
+
+            } else {
+                // If widget is not ready, wait 100ms and try again
+                setTimeout(initializeFreshchat, 100);
+            }
+        }
+
+        // Start the process after the page has loaded
+        window.onload = initializeFreshchat;
     </script>
     
 </body>
