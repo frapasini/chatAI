@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<script
-    src='//eu.fw-cdn.com/13069928/1021706.js'
-    chat='true'>
-</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,9 +15,76 @@
             background-position: center;
             background-repeat: no-repeat;
         }
+        
+        /* Custom Freshchat widget styling for extended dimensions */
+        .custom_fc_frame {
+            width: 400px !important;
+            height: 600px !important;
+            max-height: 90vh !important;
+            right: 20px !important;
+            bottom: 20px !important;
+        }
     </style>
 </head>
 <body>
+    <!-- Freshchat Widget Configuration - Must be placed BEFORE the widget script -->
+    <script>
+        window.fcWidgetMessengerConfig = {
+            config: {
+                cssNames: {
+                    widget: "custom_fc_frame"
+                },
+                headerProperty: {
+                    appName: 'Fiscozen Support',
+                    appLogo: 'https://via.placeholder.com/40x40/007bff/ffffff?text=F'
+                },
+                content: {
+                    placeholders: {
+                        reply_field: 'Type your message...'
+                    },
+                    headers: {
+                        chat: 'Chat with Fiscozen Support'
+                    }
+                },
+                fullscreen: false
+            }
+        };
+    </script>
+
+    <!-- Freshchat Widget Script -->
+    <script src='//eu.fw-cdn.com/13069928/1021706.js' chat='true'></script>
+    
+    <!-- User Identification Script -->
+    <script>
+        // Wait for the Freshchat script to load
+        window.fwcrm.on("user:created", function () {
+            window.fcWidget.setExternalId("2502");
+            window.fcWidget.user.setFirstName("Mario");
+            window.fcWidget.user.setLastName("Rossi");
+            window.fcWidget.user.setEmail("mario.rossi@fiscozen.it");
+            window.fcWidget.user.setPhone("+393456789012");
+            window.fcWidget.user.setProperties({
+                user_id: "2502",
+                payment_status: "active",
+                fiscal_regime: "Forfettario",
+                welfare_institution: "GS INPS",
+                ateco_1: "73.11.02",
+                ssn: "RSSMRA85M01H501Z",
+                consultant_squad_id: "01-Amelis"
+            });
+            console.log("User identified successfully in Freshchat.");
+        });
+
+        // Auto-open the widget after it loads
+        window.onload = function() {
+            setTimeout(function() {
+                if (window.fcWidget && window.fcWidget.open) {
+                    window.fcWidget.open();
+                    console.log("Freshchat widget opened automatically.");
+                }
+            }, 2000);
+        };
+    </script>
     
 </body>
 </html>
