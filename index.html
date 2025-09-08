@@ -30,6 +30,8 @@
     <!-- Freshchat Widget Configuration - Must be placed BEFORE the widget script -->
     <script>
         window.fcWidgetMessengerConfig = {
+            // Provide the externalId here to initialize the widget with the correct user context
+            externalId: "161091", 
             config: {
                 cssNames: {
                     widget: "custom_fc_frame"
@@ -54,19 +56,19 @@
     <!-- Freshchat Widget Script -->
     <script src='//eu.fw-cdn.com/13069928/1021706.js' chat='true'></script>
     
-    <!-- User Identification Script -->
+    <!-- User Property Update Script -->
     <script>
         function initializeFreshchat() {
             if (typeof window.fcWidget !== 'undefined') {
-                console.log("Freshchat widget is ready. Setting user properties and restoring session...");
+                console.log("Freshchat widget is ready. Updating user properties...");
 
-                // 1. Set all user properties first
+                // The user is now identified via externalId in the config.
+                // We now just update their properties to ensure they are current.
                 window.fcWidget.user.setFirstName("Mario");
                 window.fcWidget.user.setLastName("Rossi");
                 window.fcWidget.user.setEmail("mario.rossi@fiscozen.it");
                 window.fcWidget.user.setPhone("+393456789012");
                 window.fcWidget.user.setProperties({
-                    user_id: "2502",
                     payment_status: "active",
                     fiscal_regime: "Forfettario",
                     welfare_institution: "GS INPS",
@@ -74,20 +76,11 @@
                     ssn: "RSSMRA85M01H501Z",
                     consultant_squad_id: "01-Amelis"
                 });
-                console.log("User properties have been set.");
+                console.log("User properties updated successfully.");
 
-                // 2. Restore the user session using their externalId
-                window.fcWidget.user.restore("2502", {
-                    onSuccess: function() {
-                        console.log("User session restored successfully.");
-                        // 3. Open the widget after successful restoration
-                        window.fcWidget.open();
-                        console.log("Freshchat widget opened automatically.");
-                    },
-                    onError: function() {
-                        console.error("Failed to restore user session.");
-                    }
-                });
+                // Auto-open the widget
+                window.fcWidget.open();
+                console.log("Freshchat widget opened automatically.");
 
             } else {
                 // If widget is not ready, wait 100ms and try again
