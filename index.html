@@ -69,6 +69,8 @@
             window.fcWidget.on('user:created', function(resp) {
               var status = resp && resp.status;
               var data = resp && resp.data;
+              console.log(status);
+              console.log(data);
               if (status === 200 && data.restoreId) {
                 console.log("User created successfully. New restoreId:", data.restoreId);
                 // In a real application, you would now save this data.restoreId to your database.
