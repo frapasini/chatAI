@@ -15,82 +15,76 @@
             background-position: center;
             background-repeat: no-repeat;
         }
-        
-        /* Custom Freshchat widget styling for extended dimensions */
-        .custom_fc_frame {
-            width: 400px !important;
-            height: 600px !important;
-            max-height: 90vh !important;
-            right: 20px !important;
-            bottom: 20px !important;
-        }
     </style>
 </head>
 <body>
-    <!-- Freshchat Widget Configuration - Must be placed BEFORE the widget script -->
+    <!-- 
+      This is the recommended Freshchat implementation.
+      1. It sets the externalId on init to prevent user conflicts.
+      2. It uses the widget:loaded event to know when the API is ready.
+      3. It checks if the user already exists before setting properties.
+      4. It captures the restoreId for new users to maintain conversation history.
+    -->
+
+    <!-- Freshchat Configuration -->
     <script>
-        window.fcWidgetMessengerConfig = {
-            // Provide the externalId here to initialize the widget with the correct user context
-            externalId: "161091", 
-            config: {
-                cssNames: {
-                    widget: "custom_fc_frame"
-                },
-                headerProperty: {
-                    appName: 'Fiscozen Support',
-                    appLogo: 'https://via.placeholder.com/40x40/007bff/ffffff?text=F'
-                },
-                content: {
-                    placeholders: {
-                        reply_field: 'Type your message...'
-                    },
-                    headers: {
-                        chat: 'Chat with Fiscozen Support'
-                    }
-                },
-                fullscreen: false
-            }
-        };
+      // In a real application, you would fetch this from your database for the logged-in user.
+      var restoreId = null; 
+
+      window.fcWidgetMessengerConfig = {
+        externalId: "2502",      // User's unique ID in your system
+        restoreId: restoreId ? restoreId : null
+      };
     </script>
 
     <!-- Freshchat Widget Script -->
     <script src='//eu.fw-cdn.com/13069928/1021706.js' chat='true'></script>
-    
-    <!-- User Property Update Script -->
+
+    <!-- Freshchat User Initialization Script -->
     <script>
-        function initializeFreshchat() {
-            if (typeof window.fcWidget !== 'undefined') {
-                console.log("Freshchat widget is ready. Updating user properties...");
+      window.fwcrm.on('widget:loaded', function() {
+        console.log("Freshchat widget:loaded event fired.");
 
-                // The user is now identified via externalId in the config.
-                // We now just update their properties to ensure they are current.
-                window.fcWidget.user.setFirstName("Mario");
-                window.fcWidget.user.setLastName("Rossi");
-                window.fcWidget.user.setEmail("mario.rossi@fiscozen.it");
-                window.fcWidget.user.setPhone("+393456789012");
-                window.fcWidget.user.setProperties({
-                    payment_status: "active",
-                    fiscal_regime: "Forfettario",
-                    welfare_institution: "GS INPS",
-                    ateco_1: "73.11.02",
-                    ssn: "RSSMRA85M01H501Z",
-                    consultant_squad_id: "01-Amelis"
-                });
-                console.log("User properties updated successfully.");
+        window.fcWidget.user.get(function(resp) {
+          var status = resp && resp.status;
+          var data = resp && resp.data;
 
-                // Auto-open the widget
-                window.fcWidget.open();
-                console.log("Freshchat widget opened automatically.");
+          // The user.get() call returns a 404 status if the user doesn't exist yet.
+          // We only set properties for brand-new users.
+          if (status === 404) {
+            console.log("User not found on Freshchat, creating new user...");
+            window.fcWidget.user.setProperties({
+              firstName: "Mario",
+              lastName: "Rossi",
+              email: "mario.rossi@fiscozen.it",
+              phone: "+393456789012",
+              payment_status: "active",
+              fiscal_regime: "Forfettario",
+              welfare_institution: "GS INPS",
+              ateco_1: "73.11.02",
+              ssn: "RSSMRA85M01H501Z",
+              consultant_squad_id: "01-Amelis"
+            });
 
-            } else {
-                // If widget is not ready, wait 100ms and try again
-                setTimeout(initializeFreshchat, 100);
-            }
-        }
+            // Listen for the user:created event to get the new restoreId
+            window.fcWidget.on('user:created', function(resp) {
+              var status = resp && resp.status;
+              var data = resp && resp.data;
+              if (status === 200 && data.restoreId) {
+                console.log("User created successfully. New restoreId:", data.restoreId);
+                // In a real application, you would now save this data.restoreId to your database
+                // associated with the user "2502" for future sessions.
+              }
+            });
+          } else {
+            console.log("Existing user found on Freshchat, session restored.");
+          }
 
-        // Start the process after the page has loaded
-        window.onload = initializeFreshchat;
+          // Always open the widget
+          window.fcWidget.open();
+          console.log("Widget opened automatically.");
+        });
+      }); 
     </script>
-    
 </body>
 </html>
