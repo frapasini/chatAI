@@ -32,7 +32,7 @@
       var restoreId = null; 
 
       window.fcWidgetMessengerConfig = {
-        externalId: "2502",      // User's unique ID in your system
+        externalId: "161091",      // User's unique ID in your system
         restoreId: restoreId ? restoreId : null
       };
     </script>
@@ -49,9 +49,7 @@
           var status = resp && resp.status;
           var data = resp && resp.data;
 
-          // user.get() returns a 401 if the user doesn't exist yet.
-          // We only set properties for brand-new users.
-          if (status === 401) {
+          if (status !== 200) {
             console.log("User not found on Freshchat, creating new user...");
             window.fcWidget.user.setProperties({
               firstName: "Mario",
@@ -76,6 +74,7 @@
                 // In a real application, you would now save this data.restoreId to your database.
               }
             });
+
           } else {
             console.log("Existing user found on Freshchat, session restored. Status:", status);
           }
