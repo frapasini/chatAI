@@ -56,12 +56,11 @@
     
     <!-- User Identification Script -->
     <script>
-        // This function polls until the Freshchat widget is ready, then identifies the user.
         function initializeFreshchat() {
             if (typeof window.fcWidget !== 'undefined') {
-                // Once the widget is ready, identify the user
-                console.log("Freshchat widget is ready. Identifying user...");
-                window.fcWidget.setExternalId("2502");
+                console.log("Freshchat widget is ready. Setting user properties and restoring session...");
+
+                // 1. Set all user properties first
                 window.fcWidget.user.setFirstName("Mario");
                 window.fcWidget.user.setLastName("Rossi");
                 window.fcWidget.user.setEmail("mario.rossi@fiscozen.it");
@@ -75,11 +74,20 @@
                     ssn: "RSSMRA85M01H501Z",
                     consultant_squad_id: "01-Amelis"
                 });
-                console.log("User identification data sent to Freshchat.");
+                console.log("User properties have been set.");
 
-                // Auto-open the widget
-                window.fcWidget.open();
-                console.log("Freshchat widget opened automatically.");
+                // 2. Restore the user session using their externalId
+                window.fcWidget.user.restore("2502", {
+                    onSuccess: function() {
+                        console.log("User session restored successfully.");
+                        // 3. Open the widget after successful restoration
+                        window.fcWidget.open();
+                        console.log("Freshchat widget opened automatically.");
+                    },
+                    onError: function() {
+                        console.error("Failed to restore user session.");
+                    }
+                });
 
             } else {
                 // If widget is not ready, wait 100ms and try again
