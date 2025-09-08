@@ -32,7 +32,7 @@
       var restoreId = null; 
 
       window.fcWidgetMessengerConfig = {
-        externalId: "1610",      // User's unique ID in your system
+        externalId: "555",      // User's unique ID in your system
         restoreId: restoreId ? restoreId : null
       };
     </script>
@@ -52,16 +52,16 @@
           if (status !== 200) {
             console.log("User not found on Freshchat, creating new user...");
             window.fcWidget.user.setProperties({
-              firstName: "Francesco",
-              lastName: "Pasini",
-              email: "francesco.pasini@fiscozen.it",
-              phone: "+391610",
+              firstName: "Chris",
+              lastName: "Martin",
+              email: "chris.martin@fiscozen.it",
+              phone: "+44555",
               // Custom properties
               payment_status: "active",
               fiscal_regime: "Forfettario",
               welfare_institution: "GS INPS",
               ateco_1: "73.11.02",
-              ssn: "PSNFNC",
+              ssn: "CHRIS",
               consultant_squad_id: "01-Amelis"
             });
 
