@@ -40,6 +40,11 @@
     <!-- Freshchat Widget Script -->
     <script src='//eu.fw-cdn.com/13069928/1021706.js' chat='true'></script>
 
+    <!-- Configure Unless to prevent its widget from appearing -->
+    <script>
+        window.TxtOptions = { autoShow: false };
+    </script>
+
     <!-- Unless Profile Update Script (loads the 'Txt' object) -->
     <script data-unless='1.2' data-installer='snippet'>!function(o,p,t,i,m,a,l){function s(e){o.documentElement.style.opacity=e}function d(e){i.parentNode.insertBefore(e,i)}s((window.TxtOptions||{}).asyncMode?"":0),setTimeout(function(){s("")},3e3),i=(o.head||o.documentElement).firstChild,l="https://"+t+".unless.com/js/v5/latest/txt.min.js?id="+t+"&domain="+window.location.hostname,(m=o.createElement("link")).href=l,m.rel="preconnect preload",m.as=p,d(m),(a=o.createElement(p)).src=l,d(a),a.onerror=function(){s("")}}(document,"script","802f9be4-64b4-4731-81a3-b85ec2d1fc22");</script>
 
