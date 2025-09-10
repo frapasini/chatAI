@@ -40,15 +40,45 @@
     <!-- Freshchat Widget Script -->
     <script src='//eu.fw-cdn.com/13069928/1021706.js' chat='true'></script>
 
-    <!-- Freshchat User Initialization Script -->
+    <!-- Unless Profile Update Script (loads the 'Txt' object) -->
+    <script data-unless='1.2' data-installer='snippet'>!function(o,p,t,i,m,a,l){function s(e){o.documentElement.style.opacity=e}function d(e){i.parentNode.insertBefore(e,i)}s((window.TxtOptions||{}).asyncMode?"":0),setTimeout(function(){s("")},3e3),i=(o.head||o.documentElement).firstChild,l="https://"+t+".unless.com/js/v5/latest/txt.min.js?id="+t+"&domain="+window.location.hostname,(m=o.createElement("link")).href=l,m.rel="preconnect preload",m.as=p,d(m),(a=o.createElement(p)).src=l,d(a),a.onerror=function(){s("")}}(document,"script","802f9be4-64b4-4731-81a3-b85ec2d1fc22");</script>
+
+    <!-- Freshchat User Initialization & Unless Profile Update Script -->
     <script>
       window.fwcrm.on('widget:loaded', function() {
         console.log("Freshchat widget:loaded event fired.");
 
+        // --- Update Unless Profile ---
+        // We wait for the 'Txt' object from Unless to be ready before calling it.
+        function updateUnlessProfile() {
+            if (typeof Txt !== 'undefined' && Txt.updateProfile) {
+                console.log("Unless API is ready. Updating profile for user 555...");
+                Txt.updateProfile([
+                    {key: 'user_id', value: '555', type: 'text', custom: true},
+                    {key: 'firstName', value: 'Chris', type: 'text', custom: true},
+                    {key: 'lastName', value: 'Martin', type: 'text', custom: true},
+                    {key: 'email', value: 'chris.martin@fiscozen.it', type: 'text', custom: true},
+                    {key: 'phone', value: '+44555', type: 'text', custom: true},
+                    {key: 'payment_status', value: 'active', type: 'text', custom: true},
+                    {key: 'fiscal_regime', value: 'Forfettario', type: 'text', custom: true},
+                    {key: 'welfare_institution', value: 'GS INPS', type: 'text', custom: true},
+                    {key: 'ateco_1', value: '73.11.02', type: 'text', custom: true},
+                    {key: 'ssn', value: 'CHRIS', type: 'text', custom: true},
+                    {key: 'consultant_squad_id', value: '01-Amelis', type: 'text', custom: true}
+                ]);
+            } else {
+                // If Unless script isn't ready, wait 100ms and try again
+                setTimeout(updateUnlessProfile, 100);
+            }
+        }
+        updateUnlessProfile(); // Start the process
+
+        // --- Freshchat User Initialization ---
         window.fcWidget.user.get(function(resp) {
           var status = resp && resp.status;
           var data = resp && resp.data;
 
+          // user.get() returns a non-200 status if the user doesn't exist yet.
           if (status !== 200) {
             console.log("User not found on Freshchat, creating new user...");
             window.fcWidget.user.setProperties({
