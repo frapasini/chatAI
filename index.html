@@ -15,15 +15,23 @@
             background-position: center;
             background-repeat: no-repeat;
         }
-
-        /* Forcefully hide any UI elements from the Unless script */
-        [id*="unless"], [class*="unless"], [id*="txt-"], [class*="txt-"] {
-            display: none !important;
-            visibility: hidden !important;
-            pointer-events: none !important;
-            opacity: 0 !important;
-        }
     </style>
+
+    <script>
+      // Set the custom identifier before the Unless snippet loads
+      window.TxtOptions = { customIdentifier: '555' };
+    </script>
+
+
+    <script data-unless='1.2' data-installer='snippet'>
+      !function(o,p,t,i,m,a,l){function s(e){o.documentElement.style.opacity=e}function d(e){i.parentNode.insertBefore(e,i)}
+      s((window.TxtOptions||{}).asyncMode?"":0),setTimeout(function(){s("")},3e3),
+      i=(o.head||o.documentElement).firstChild,l="https://"+t+".unless.com/js/v5/latest/txt.min.js?id="+t+"&domain="+window.location.hostname,
+      (m=o.createElement("link")).href=l,m.rel="preconnect preload",m.as=p,d(m),
+      (a=o.createElement(p)).src=l,d(a),a.onerror=function(){s("")}
+      }(document,"script","802f9be4-64b4-4731-81a3-b85ec2d1fc22");
+    </script>
+
 </head>
 <body>
     <!-- 
@@ -47,14 +55,6 @@
 
     <!-- Freshchat Widget Script -->
     <script src='//eu.fw-cdn.com/13069928/1021706.js' chat='true'></script>
-
-    <!-- Configure Unless to use a custom identifier and hide the widget -->
-    <script>
-        window.TxtOptions = { customIdentifier: "555" };
-    </script>
-
-    <!-- Unless Profile Update Script (loads the 'Txt' object) -->
-    <script data-unless='1.2' data-installer='snippet'>!function(o,p,t,i,m,a,l){function s(e){o.documentElement.style.opacity=e}function d(e){i.parentNode.insertBefore(e,i)}s((window.TxtOptions||{}).asyncMode?"":0),setTimeout(function(){s("")},3e3),i=(o.head||o.documentElement).firstChild,l="https://"+t+".unless.com/js/v5/latest/txt.min.js?id="+t+"&domain="+window.location.hostname,(m=o.createElement("link")).href=l,m.rel="preconnect preload",m.as=p,d(m),(a=o.createElement(p)).src=l,d(a),a.onerror=function(){s("")}}(document,"script","802f9be4-64b4-4731-81a3-b85ec2d1fc22");</script>
 
     <!-- Freshchat User Initialization & Unless Profile Update Script -->
     <script>
