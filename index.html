@@ -15,6 +15,32 @@
             background-position: center;
             background-repeat: no-repeat;
         }
+        #fc_frame.fc-open {
+            /* Positioning */
+            top: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            left: auto !important;
+
+            /* Sizing */
+            width: 400px !important; /* Adjust width as needed */
+            height: 100% !important;
+
+            /* Resetting the 'popup' appearance */
+            margin: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+
+            /* Optional: Add a border to separate it from your page content */
+            border-left: 1px solid #e0e0e0 !important;
+        }
+
+        /* Target the iframe element itself to ensure it fills the container we just styled. */
+        #fc_frame.fc-open #fc_widget {
+            height: 100% !important;
+            width: 100% !important;
+        }
     </style>
 
     <script>
