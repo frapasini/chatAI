@@ -15,6 +15,14 @@
             background-position: center;
             background-repeat: no-repeat;
         }
+
+        /* Forcefully hide any UI elements from the Unless script */
+        [id*="unless"], [class*="unless"], [id*="txt-"], [class*="txt-"] {
+            display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            opacity: 0 !important;
+        }
     </style>
 </head>
 <body>
@@ -40,9 +48,9 @@
     <!-- Freshchat Widget Script -->
     <script src='//eu.fw-cdn.com/13069928/1021706.js' chat='true'></script>
 
-    <!-- Configure Unless to prevent its widget from appearing -->
+    <!-- Configure Unless to use a custom identifier and hide the widget -->
     <script>
-        window.TxtOptions = { autoShow: false };
+        window.TxtOptions = { customIdentifier: "555" };
     </script>
 
     <!-- Unless Profile Update Script (loads the 'Txt' object) -->
