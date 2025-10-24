@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Unless</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+
+    <script>
+        // Set the custom identifier before the Unless snippet loads
+        window.TxtOptions = { customIdentifier: '2502' };
+    </script>
+
+
+    <script data-unless='1.2' data-installer='snippet'>
+        !function(o,p,t,i,m,a,l){function s(e){o.documentElement.style.opacity=e}function d(e){i.parentNode.insertBefore(e,i)}
+        s((window.TxtOptions||{}).asyncMode?"":0),setTimeout(function(){s("")},3e3),
+        i=(o.head||o.documentElement).firstChild,l="https://"+t+".unless.com/js/v5/latest/txt.min.js?id="+t+"&domain="+window.location.hostname,
+        (m=o.createElement("link")).href=l,m.rel="preconnect preload",m.as=p,d(m),
+        (a=o.createElement(p)).src=l,d(a),a.onerror=function(){s("")}
+        }(document,"script","802f9be4-64b4-4731-81a3-b85ec2d1fc22");
+    </script>
+
+</head>
+
+<body>
+    <div class="left-column"></div>
+    <div class="right-column">
+        <div id="chat-container"> </div>
+
+        <div id="placeholder-trasparente">
+            </div>
+        </div>
+
+    <script>
+        function waitForUnless(callback, attempts = 10, delay = 500) {
+            if (typeof Txt !== 'undefined' && Txt.identify) {
+                callback();
+            } else if (attempts > 0) {
+                console.warn("Waiting for Unless script to load...");
+                setTimeout(() => waitForUnless(callback, attempts - 1, delay), delay);
+            } else {
+                console.error("Unless script failed to load.");
+            }
+        }
+
+        window.onload = function() {
+            waitForUnless(() => {
+
+                // Parameters needed to create audiences and train AI 
+                Txt.updateProfile([
+                {key: 'user_id', value: '2502', type: 'text', custom: true},    
+                {key: 'firstName', value: 'Mario', type: 'text', custom: true},    
+                {key: 'lastName', value: 'Rossi', type: 'text', custom: true},     
+                {key: 'email', value: 'mario.rossi@fiscozen.it', type: 'text', custom: true},     
+                {key: 'payment_status', value: 'active', type: 'text', custom: true},
+                {key: 'fiscal_regime', value: 'Forfettario', type: 'text', custom: true},
+                {key: 'welfare_institution', value: 'GS INPS', type: 'text', custom: true},      
+                {key: 'ateco_1', value: '73.11.02', type: 'text', custom: true},      
+                {key: 'consultant_squad_id', value: '01-Amelis', type: 'text', custom: true}
+                //{key: 'is_fiscozeninsider', value: 'true', type: 'text', custom: true},     
+                //{key: 'first_payment_date', value: '2025-01-15', type: 'text', custom: true},
+                ])
+                
+                // Identification of the customer and sent to Freshchat
+                Txt.set('chatMetadata', {
+                    reference_id: '2502',
+                    user_id: '2502', 
+                    firstName: 'Mario', 
+                    lastName: 'Rossi', 
+                    email: 'mario.rossi@fiscozen.it', 
+                    phone: '+393456789012',
+                    payment_status: 'active',
+                    fiscal_regime: 'Forfettario', 
+                    welfare_institution: 'GS INPS',
+                    ateco_1: '73.11.02',
+                    ssn: 'RSSMRA85M01H501Z',
+                    consultant_squad_id: '01-Amelis'
+                });
+
+                console.log("Visitor identified successfully.");
+            });
+        };
+    </script>
+
+</body>
+</html>
