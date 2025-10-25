@@ -16,7 +16,7 @@
             display: flex;
         }
         #main-content {
-            width: 75vw;
+            width: 100vw;
             height: 100vh;
             background-image: url('newFO.png');
             background-size: cover;
@@ -26,7 +26,8 @@
         #chat-container {
             width: 25vw;
             height: 100vh;
-            border-left: 1px solid #ccc;
+            position: relative;
+            z-index: 9999;
         }
     </style>
 </head>
@@ -48,12 +49,12 @@
         },
       });
 
-      // Wait for the widget to be ready, then move it.
-      window.fcWidget.on('widget:loaded', function() {
+      function moveChatWhenReady() {
         var chatContainer = document.getElementById('chat-container');
         var freshchatFrame = document.getElementById('fc_frame');
         
         if (chatContainer && freshchatFrame) {
+            console.log("Found fc_frame, moving it to container.");
             // Apply styles to make it fit the container
             freshchatFrame.style.width = '100%';
             freshchatFrame.style.height = '100%';
@@ -61,8 +62,16 @@
 
             // Move the iframe into our container
             chatContainer.appendChild(freshchatFrame);
+        } else {
+            // If the frame doesn't exist yet, wait and try again.
+            console.log("fc_frame not found, will try again in 100ms.");
+            setTimeout(moveChatWhenReady, 100);
         }
-      });
+      }
+
+      // Wait for the widget to be ready, then start trying to move it.
+      window.fcWidget.on('widget:loaded', moveChatWhenReady);
+
       window.fcWidget.open();
     }
     function initialize(i,t){var e;i.getElementById(t)?
