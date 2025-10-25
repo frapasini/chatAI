@@ -6,26 +6,34 @@
     <title>ChatAI</title>
     <link rel="icon" href="chat-ai-favicon.ico" type="image/x-icon">
     <style>
-        body {
+        body, html {
             margin: 0;
             padding: 0;
+            height: 100%;
+            overflow: hidden; /* Prevent scrolling on the main page */
+        }
+        body {
+            display: flex;
+        }
+        #main-content {
+            width: 75vw;
             height: 100vh;
             background-image: url('newFO.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
-
-        #fc_frame {
-            right: 0 !important;
-            bottom: 0 !important;
-            width: 25vw !important;
-            height: 100% !important;
+        #chat-container {
+            width: 25vw;
+            height: 100vh;
+            border-left: 1px solid #ccc;
         }
     </style>
-
 </head>
 <body>
+  <div id="main-content"></div>
+  <div id="chat-container"></div>
+
   <script>
     function initFreshChat() {
       console.log("initFreshChat function called!");
@@ -36,9 +44,24 @@
         externalId: "test-68-external-id",
         restoreId: "e2a144bb-0c69-4b45-9439-78bdaaaa88c1",
         config: {
-          fullscreen: true,
           headerProperty: { hideHeader: true },
         },
+      });
+
+      // Wait for the widget to be ready, then move it.
+      window.fcWidget.on('widget:loaded', function() {
+        var chatContainer = document.getElementById('chat-container');
+        var freshchatFrame = document.getElementById('fc_frame');
+        
+        if (chatContainer && freshchatFrame) {
+            // Apply styles to make it fit the container
+            freshchatFrame.style.width = '100%';
+            freshchatFrame.style.height = '100%';
+            freshchatFrame.style.position = 'relative';
+
+            // Move the iframe into our container
+            chatContainer.appendChild(freshchatFrame);
+        }
       });
       window.fcWidget.open();
     }
