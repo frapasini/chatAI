@@ -19,12 +19,18 @@
             height: 100% !important;
             width: 100% !important;
         }
+        #fc_frame {
+            visibility: visible !important;
+            opacity: 1 !important;
+            z-index: 999999 !important;
+        }
     </style>
 
 </head>
 <body>
   <script>
     function initFreshChat() {
+      console.log("initFreshChat function called!");
       window.fcWidget.init({
            token: "4b139dcc-a799-4e3f-984c-e227cf123bae",
      host: "https://fiscozen.freshchat.com",
