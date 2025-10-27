@@ -1,0 +1,33 @@
+.form-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.form-columns {
+    display: flex;
+    gap: 2rem;
+}
+.form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.form-container input, .form-container select {
+    display: block;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+.form-container button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+}
