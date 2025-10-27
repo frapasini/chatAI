@@ -40,13 +40,6 @@
             cursor: pointer;
             width: 100%;
         }
-        #audiences-display {
-            margin-top: 1rem;
-            padding: 1rem;
-            background-color: #e9ecef;
-            border-radius: 4px;
-            text-align: left;
-        }
     </style>
 
 </head>
@@ -54,15 +47,21 @@
 
   <div class="form-container">
     <h2>Update User Info</h2>
+    <input type="text" id="firstName" placeholder="First Name">
+    <input type="text" id="lastName" placeholder="Last Name">
+    <input type="email" id="email" placeholder="Email">
+    <input type="tel" id="phone" placeholder="Phone">
+    <input type="text" id="ssn" placeholder="SSN">
+    <input type="text" id="consultant_squad_id" placeholder="Consultant Squad ID">
     <select id="fiscal_regime">
       <option value="">Select Fiscal Regime</option>
-      <option value="Forfettario">Forfettario</option>
+      <option value="Forfettario" selected>Forfettario</option>
       <option value="Semplificato">Semplificato</option>
       <option value="Minimi">Minimi</option>
     </select>
     <select id="welfare_institution">
         <option value="">Select Welfare Institution</option>
-        <option value="GS INPS">GS INPS</option>
+        <option value="GS INPS" selected>GS INPS</option>
         <option value="ENPAP">ENPAP</option>
         <option value="ENPAPI">ENPAPI</option>
         <option value="ENPAM">ENPAM</option>
@@ -74,12 +73,12 @@
     </select>
     <select id="payment_status">
         <option value="">Select Payment Status</option>
-        <option value="CLIENTE">CLIENTE</option>
+        <option value="CLIENTE" selected>CLIENTE</option>
         <option value="BASE">BASE</option>
     </select>
     <select id="ateco_1">
         <option value="">Select ATECO Code</option>
-        <option value="55.20.42">55.20.42 (Affittacamere/Cav)</option>
+        <option value="55.20.42" selected>55.20.42 (Affittacamere/Cav)</option>
         <option value="55.20.41">55.20.41 (Affittacamere/Cav)</option>
         <option value="47.12.90">47.12.90 (OSS/IOSS)</option>
         <option value="46.89.00">46.89.00 (OSS/IOSS)</option>
@@ -97,13 +96,9 @@
         <option value="Other">Other</option>
     </select>
     <button onclick="updateFreshchatUser()">Update and Open Chat</button>
-    <div id="audiences-display" style="display: none;">
-        <h3>Detected Audiences:</h3>
-        <pre><code id="audiences-json"></code></pre>
-    </div>
   </div>
 
-  <script>
+    <script>
     function determineUserAudience(data) {
         try {
             let detectedAudiences = [];
@@ -265,7 +260,15 @@
       
       window.fcWidget.setExternalId(newUserId);
       
-      window.fcWidget.user.setProperties({
+      // Set basic user details
+      window.fcWidget.user.setFirstName(document.getElementById('firstName').value);
+      window.fcWidget.user.setLastName(document.getElementById('lastName').value);
+      window.fcWidget.user.setEmail(document.getElementById('email').value);
+      window.fcWidget.user.setPhone(document.getElementById('phone').value);
+
+            window.fcWidget.user.setProperties({
+        ssn: document.getElementById('ssn').value,
+        consultant_squad_id: document.getElementById('consultant_squad_id').value,
         fiscal_regime: userData.fiscal_regime,
         welfare_institution: userData.welfare_institution,
         payment_status: userData.payment_status,
@@ -273,15 +276,8 @@
         userAudience: audienceId
       });
 
-      // Display the detected audiences
-      var displayDiv = document.getElementById('audiences-display');
-      var codeElement = document.getElementById('audiences-json');
-      if (audienceResult.detectedAudiences.length > 0) {
-          codeElement.textContent = JSON.stringify(audienceResult.detectedAudiences, null, 2);
-          displayDiv.style.display = 'block';
-      } else {
-          displayDiv.style.display = 'none';
-      }
+      // Print audiences to the console
+      console.log("Detected Audiences:", audienceResult.detectedAudiences);
     }
 
     function initFreshChat() {
@@ -290,7 +286,7 @@
         host: "https://fiscozen.freshchat.com",
         widgetUuid: "ca164ad6-2471-40c2-af9c-7e7f32825147"
       });
-      window.fcWidget.open();
+          window.fcWidget.open();
     }
     function initialize(i,t){var e;i.getElementById(t)?
     initFreshChat():((e=i.createElement("script")).id=t,e.async=!0,
@@ -298,6 +294,6 @@
     function initiateCall(){initialize(document,"Freshchat-js-sdk")}
     window.addEventListener?window.addEventListener("load",initiateCall,!1):
     window.attachEvent("load",initiateCall,!1);
-  </script>
+    </script>
 </body>
 </html>
