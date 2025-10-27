@@ -5,98 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatAI</title>
     <link rel="icon" href="chat-ai-favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="form-styles.css">
     <style>
         body {
-            font-family: sans-serif;
             margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 0;
             height: 100vh;
-            background-color: #f0f2f5;
+            background-image: url('newFO.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #fc_frame {
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 33.33vw !important;
+            height: 100% !important;
         }
     </style>
 
 </head>
 <body>
-
-  <div class="form-container">
-    <h2>Update User Info</h2>
-    <div class="form-columns">
-      <div class="form-column">
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName" placeholder="First Name" value="John">
-        <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" placeholder="Last Name" value="Doe">
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Email" value="john.doe@example.com">
-        <label for="phone">Phone</label>
-        <input type="tel" id="phone" placeholder="Phone" value="+1234567890">
-        <label for="ssn">SSN</label>
-        <input type="text" id="ssn" placeholder="SSN" value="RSSJHN80A01H501U">
-        <label for="consultant_squad_id">Consultant Squad ID</label>
-        <input type="text" id="consultant_squad_id" placeholder="Consultant Squad ID" value="CS-123">
-      </div>
-      <div class="form-column">
-        <label for="fiscal_regime">Fiscal Regime</label>
-        <select id="fiscal_regime">
-          <option value="">Select Fiscal Regime</option>
-          <option value="Forfettario" selected>Forfettario</option>
-          <option value="Semplificato">Semplificato</option>
-          <option value="Minimi">Minimi</option>
-        </select>
-        <label for="welfare_institution">Welfare Institution</label>
-        <select id="welfare_institution">
-            <option value="">Select Welfare Institution</option>
-            <option value="GS INPS" selected>GS INPS</option>
-            <option value="ENPAP">ENPAP</option>
-            <option value="ENPAPI">ENPAPI</option>
-            <option value="ENPAM">ENPAM</option>
-            <option value="CASSA FORENSE">CASSA FORENSE</option>
-            <option value="INARCASSA">INARCASSA</option>
-            <option value="INPS ART">INPS ART</option>
-            <option value="INPS COM">INPS COM</option>
-            <option value="Other">Other</option>
-        </select>
-        <label for="payment_status">Payment Status</label>
-        <select id="payment_status">
-            <option value="">Select Payment Status</option>
-            <option value="CLIENTE" selected>CLIENTE</option>
-            <option value="BASE">BASE</option>
-        </select>
-        <label for="ateco_1">ATECO Code</label>
-        <select id="ateco_1">
-            <option value="">Select ATECO Code</option>
-            <option value="55.20.42" selected>55.20.42 (Affittacamere/Cav)</option>
-            <option value="55.20.41">55.20.41 (Affittacamere/Cav)</option>
-            <option value="47.12.90">47.12.90 (OSS/IOSS)</option>
-            <option value="46.89.00">46.89.00 (OSS/IOSS)</option>
-            <option value="58.11.00">58.11.00 (OSS/IOSS)</option>
-            <option value="60.39.00">60.39.00 (OSS/IOSS)</option>
-            <option value="58.29.00">58.29.00 (OSS/IOSS)</option>
-            <option value="74.99.21">74.99.21 (Sanitari)</option>
-            <option value="85.69.01">85.69.01 (Sanitari)</option>
-            <option value="86.94.02">86.94.02 (Sanitari)</option>
-            <option value="86.95.00">86.95.00 (Sanitari)</option>
-            <option value="86.99.03">86.99.03 (Sanitari)</option>
-            <option value="86.99.09">86.99.09 (Sanitari)</option>
-            <option value="88.99.04">88.99.04 (Sanitari)</option>
-            <option value="88.99.09">88.99.09 (Sanitari)</option>
-            <option value="Other">Other</option>
-        </select>
-      </div>
-    </div>
-    <button onclick="updateFreshchatUser()">Update and Open Chat</button>
-  </div>
-
   <script>
     function initFreshChat() {
+      console.log("initFreshChat function called!");
       window.fcWidget.init({
         token: "4b139dcc-a799-4e3f-984c-e227cf123bae",
         host: "https://fiscozen.freshchat.com",
-        widgetUuid: "ca164ad6-2471-40c2-af9c-7e7f32825147"
+        widgetUuid: "ca164ad6-2471-40c2-af9c-7e7f32825147",
+        externalId: "test-68-external-id",
+        restoreId: "e2a144bb-0c69-4b45-9439-78bdaaaa88c1",
+        config: {
+          headerProperty: { hideHeader: true },
+        },
       });
       window.fcWidget.open();
     }
@@ -107,6 +48,5 @@
     window.addEventListener?window.addEventListener("load",initiateCall,!1):
     window.attachEvent("load",initiateCall,!1);
   </script>
-  <script src="form-logic.js"></script>
 </body>
 </html>
