@@ -180,5 +180,7 @@ function updateFreshchatUser() {
 
   // Re-initialize the chat to reflect the new user
   window.fcWidget.close();
-  window.fcWidget.open();
+  setTimeout(function() {
+    window.fcWidget.open();
+  }, 250); // Add a small delay to ensure the widget has time to close before reopening
 }
