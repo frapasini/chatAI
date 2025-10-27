@@ -29,7 +29,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             text-align: center;
         }
-        .form-container input {
+        .form-container input, .form-container select {
             display: block;
             width: calc(100% - 20px);
             padding: 10px;
@@ -46,6 +46,13 @@
             cursor: pointer;
             width: 100%;
         }
+        #audiences-display {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            text-align: left;
+        }
     </style>
 
 </head>
@@ -53,15 +60,210 @@
 
   <div class="form-container">
     <h2>Update User Info</h2>
-    <input type="text" id="fiscal_regime" placeholder="Fiscal Regime">
-    <input type="text" id="welfare_institution" placeholder="Welfare Institution">
+    <select id="fiscal_regime">
+      <option value="">Select Fiscal Regime</option>
+      <option value="Forfettario">Forfettario</option>
+      <option value="Semplificato">Semplificato</option>
+      <option value="Minimi">Minimi</option>
+    </select>
+    <select id="welfare_institution">
+        <option value="">Select Welfare Institution</option>
+        <option value="GS INPS">GS INPS</option>
+        <option value="ENPAP">ENPAP</option>
+        <option value="ENPAPI">ENPAPI</option>
+        <option value="ENPAM">ENPAM</option>
+        <option value="CASSA FORENSE">CASSA FORENSE</option>
+        <option value="INARCASSA">INARCASSA</option>
+        <option value="INPS ART">INPS ART</option>
+        <option value="INPS COM">INPS COM</option>
+        <option value="Other">Other</option>
+    </select>
+    <select id="payment_status">
+        <option value="">Select Payment Status</option>
+        <option value="CLIENTE">CLIENTE</option>
+        <option value="BASE">BASE</option>
+    </select>
+    <select id="ateco_1">
+        <option value="">Select ATECO Code</option>
+        <option value="55.20.42">55.20.42 (Affittacamere/Cav)</option>
+        <option value="55.20.41">55.20.41 (Affittacamere/Cav)</option>
+        <option value="47.12.90">47.12.90 (OSS/IOSS)</option>
+        <option value="46.89.00">46.89.00 (OSS/IOSS)</option>
+        <option value="58.11.00">58.11.00 (OSS/IOSS)</option>
+        <option value="60.39.00">60.39.00 (OSS/IOSS)</option>
+        <option value="58.29.00">58.29.00 (OSS/IOSS)</option>
+        <option value="74.99.21">74.99.21 (Sanitari)</option>
+        <option value="85.69.01">85.69.01 (Sanitari)</option>
+        <option value="86.94.02">86.94.02 (Sanitari)</option>
+        <option value="86.95.00">86.95.00 (Sanitari)</option>
+        <option value="86.99.03">86.99.03 (Sanitari)</option>
+        <option value="86.99.09">86.99.09 (Sanitari)</option>
+        <option value="88.99.04">88.99.04 (Sanitari)</option>
+        <option value="88.99.09">88.99.09 (Sanitari)</option>
+        <option value="Other">Other</option>
+    </select>
     <button onclick="updateFreshchatUser()">Update and Open Chat</button>
+    <div id="audiences-display" style="display: none;">
+        <h3>Detected Audiences:</h3>
+        <pre><code id="audiences-json"></code></pre>
+    </div>
   </div>
 
   <script>
+    function determineUserAudience(data) {
+        try {
+            let detectedAudiences = [];
+            
+            // Forfettario
+            if (data['fiscal_regime'] === 'Forfettario') {
+                detectedAudiences.push('13b95dc3-3762-48a2-a974-29de71aa09fc');
+            }
+        
+            // Semplificato
+            if (data['fiscal_regime'] === 'Semplificato') {
+                detectedAudiences.push('acf5cfe8-02eb-424f-92d7-3cd7f95c6c7f');
+            }
+
+            // Minimi
+            if (data['fiscal_regime'] === 'Minimi') {
+                detectedAudiences.push('a81eaa84-0042-49a5-b24c-74de0ef114dd');
+            }
+        
+            // GS INPS
+            if (data['welfare_institution'] === 'GS INPS') {
+                detectedAudiences.push('bf65c246-96e5-4fcf-8bf1-5dd67c75dd95');
+            }
+
+            // ENPAP
+            if (data['welfare_institution'] === 'ENPAP') {
+                detectedAudiences.push('ef0f7d86-5528-4bc3-8157-3e45a1ffd0f8');
+            }
+
+            // ENPAPI
+            if (data['welfare_institution'] === 'ENPAPI') {
+                detectedAudiences.push('c208a9ab-8b04-473e-8c2f-04ba3a9b21e4');
+            }
+
+            // ENPAM
+            if (data['welfare_institution'] === 'ENPAM') {
+                detectedAudiences.push('d4db91c8-e279-4c01-8af4-87c08ae9f8d2');
+            }
+
+            // CASSA FORENSE
+            if (data['welfare_institution'] === 'CASSA FORENSE') {
+                detectedAudiences.push('d0a49afa-23af-4443-8e74-b43e35013d68');
+            }
+
+            // INARCASSA
+            if (data['welfare_institution'] === 'INARCASSA') {
+                detectedAudiences.push('cafa59b4-7358-450c-b715-056ee38329be');
+            }
+
+            // INPS Artigiani
+            if (data['welfare_institution'] === 'INPS ART') {
+                detectedAudiences.push('9cf82497-48c8-4fee-a99a-28440d289a31');
+            }
+
+            // INPS Commercianti
+            if (data['welfare_institution'] === 'INPS COM') {
+                detectedAudiences.push('7e80dfca-bc2e-45b6-b480-3a2fc5e91fe7');
+            }
+
+            // Lavoratori Autonomi
+            if (data['welfare_institution'] != 'INPS COM'
+                && data['welfare_institution'] != 'INPS ART') {
+                detectedAudiences.push('b973308d-4134-40b8-9837-6fabfa0fb8c5');
+            }
+        
+            // Ditte Individuali
+            if (data['welfare_institution'] === 'INPS COM'
+                || data['welfare_institution'] === 'INPS ART') {
+                detectedAudiences.push('47b276eb-b48f-4913-b2b9-06e7abbb7767');
+            }
+        
+            // Clienti Attivi
+            if (data['payment_status'] === 'CLIENTE') {
+                detectedAudiences.push('4c50394a-5d9a-4316-9c00-a4ccf45bbe2e');
+            }
+        
+            // Clienti Base
+            if (data['payment_status'] === 'BASE') {
+                detectedAudiences.push('8a2dbe72-ef9a-4e7c-87f1-6c47cf17a983');
+            }
+        
+            // Clienti Affittacamere/Cav
+            if (data['ateco_1'] === '55.20.42'
+                || data['ateco_1'] === '55.20.41') {
+                detectedAudiences.push('1eceb2f8-afc1-4a19-9a29-8c2ab58784b2');
+            }
+        
+            // Clienti per OSS/IOSS
+            if (data['ateco_1'] === '47.12.90'
+                || data['ateco_1'] === '46.89.00'
+                || data['ateco_1'] === '58.11.00'
+                || data['ateco_1'] === '60.39.00'
+                || data['ateco_1'] === '58.29.00') {
+                detectedAudiences.push('d6d1f5e0-fa0f-48f5-a4c0-df2d5a2d0a6b');
+            }
+
+            // Sanitari
+            if (data['ateco_1'] === '74.99.21'
+                || data['ateco_1'] === '85.69.01'
+                || data['ateco_1'] === '86.94.02'
+                || data['ateco_1'] === '86.95.00'
+                || data['ateco_1'] === '86.99.03'
+                || data['ateco_1'] === '86.99.09'
+                || data['ateco_1'] === '88.99.04'
+                || data['ateco_1'] === '88.99.09'
+                || data['welfare_institution'] === 'ENPAP'
+                || data['welfare_institution'] === 'ENPAPI'
+                || data['welfare_institution'] === 'ENPAM') {
+                detectedAudiences.push('c60ee9af-3054-4c02-9681-ee4ec0e9c7e5');
+            }
+
+            // Non Sanitari
+            if (data['ateco_1'] != '74.99.21'
+                && data['ateco_1'] != '85.69.01'
+                && data['ateco_1'] != '86.94.02'
+                && data['ateco_1'] != '86.95.00'
+                && data['ateco_1'] != '86.99.03'
+                && data['ateco_1'] != '86.99.09'
+                && data['ateco_1'] != '88.99.04'
+                && data['ateco_1'] != '88.99.09'
+                && data['welfare_institution'] != 'ENPAP'
+                && data['welfare_institution'] != 'ENPAPI'
+                && data['welfare_institution'] != 'ENPAM') {
+                detectedAudiences.push('c60ee9af-3054-4c02-9681-ee4ec0e9c7e5');
+            }
+        
+            // If the list is empty, assign a default or null
+            const finalAudience = detectedAudiences.length > 0 ? detectedAudiences[0] : 'Default_Audience';
+
+            console.log("Final Audience:", finalAudience);
+            return {
+                finalAudience: finalAudience,
+                detectedAudiences: detectedAudiences
+            };
+
+        } catch (error) {
+            console.error("An error occurred while determining audience:", error.message);
+            return {
+                finalAudience: 'Error_Audience',
+                detectedAudiences: []
+            };
+        }
+    }
+
     function updateFreshchatUser() {
-      var fiscalRegime = document.getElementById('fiscal_regime').value;
-      var welfareInstitution = document.getElementById('welfare_institution').value;
+      var userData = {
+        fiscal_regime: document.getElementById('fiscal_regime').value,
+        welfare_institution: document.getElementById('welfare_institution').value,
+        payment_status: document.getElementById('payment_status').value,
+        ateco_1: document.getElementById('ateco_1').value
+      };
+      
+      var audienceResult = determineUserAudience(userData);
+      var audienceId = audienceResult.finalAudience;
       
       // Generate a new unique user ID each time.
       var newUserId = "user-" + Date.now();
@@ -70,21 +272,31 @@
       window.fcWidget.setExternalId(newUserId);
       
       window.fcWidget.user.setProperties({
-        fiscal_regime: fiscalRegime,
-        welfare_institution: welfareInstitution
+        fiscal_regime: userData.fiscal_regime,
+        welfare_institution: userData.welfare_institution,
+        payment_status: userData.payment_status,
+        ateco_1: userData.ateco_1,
+        userAudience: audienceId
       });
 
-      window.fcWidget.open();
+      // Display the detected audiences
+      var displayDiv = document.getElementById('audiences-display');
+      var codeElement = document.getElementById('audiences-json');
+      if (audienceResult.detectedAudiences.length > 0) {
+          codeElement.textContent = JSON.stringify(audienceResult.detectedAudiences, null, 2);
+          displayDiv.style.display = 'block';
+      } else {
+          displayDiv.style.display = 'none';
+      }
     }
 
     function initFreshChat() {
-      // We don't need to log in a default user anymore
-      // User properties will be set on button click.
       window.fcWidget.init({
         token: "4b139dcc-a799-4e3f-984c-e227cf123bae",
         host: "https://fiscozen.freshchat.com",
         widgetUuid: "ca164ad6-2471-40c2-af9c-7e7f32825147"
       });
+      window.fcWidget.open();
     }
     function initialize(i,t){var e;i.getElementById(t)?
     initFreshChat():((e=i.createElement("script")).id=t,e.async=!0,
