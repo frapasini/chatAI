@@ -7,39 +7,84 @@
     <link rel="icon" href="chat-ai-favicon.ico" type="image/x-icon">
     <style>
         body {
+            font-family: sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
-            background-image: url('newFO.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-color: #f0f2f5;
         }
-
         #fc_frame {
             right: 0 !important;
             bottom: 0 !important;
             width: 33.33vw !important;
             height: 100% !important;
         }
+        .form-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .form-container input {
+            display: block;
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px auto;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .form-container button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
     </style>
 
 </head>
 <body>
+
+  <div class="form-container">
+    <h2>Update User Info</h2>
+    <input type="text" id="fiscal_regime" placeholder="Fiscal Regime">
+    <input type="text" id="welfare_institution" placeholder="Welfare Institution">
+    <button onclick="updateFreshchatUser()">Update and Open Chat</button>
+  </div>
+
   <script>
+    function updateFreshchatUser() {
+      var fiscalRegime = document.getElementById('fiscal_regime').value;
+      var welfareInstitution = document.getElementById('welfare_institution').value;
+      
+      // Generate a new unique user ID each time.
+      var newUserId = "user-" + Date.now();
+      console.log("Updating user. New External ID:", newUserId);
+      
+      window.fcWidget.setExternalId(newUserId);
+      
+      window.fcWidget.user.setProperties({
+        fiscal_regime: fiscalRegime,
+        welfare_institution: welfareInstitution
+      });
+
+      window.fcWidget.open();
+    }
+
     function initFreshChat() {
-      console.log("initFreshChat function called!");
+      // We don't need to log in a default user anymore
+      // User properties will be set on button click.
       window.fcWidget.init({
         token: "4b139dcc-a799-4e3f-984c-e227cf123bae",
         host: "https://fiscozen.freshchat.com",
-        widgetUuid: "ca164ad6-2471-40c2-af9c-7e7f32825147",
-        externalId: "test-68-external-id",
-        restoreId: "e2a144bb-0c69-4b45-9439-78bdaaaa88c1",
-        config: {
-          headerProperty: { hideHeader: true },
-        },
+        widgetUuid: "ca164ad6-2471-40c2-af9c-7e7f32825147"
       });
-      window.fcWidget.open();
     }
     function initialize(i,t){var e;i.getElementById(t)?
     initFreshChat():((e=i.createElement("script")).id=t,e.async=!0,
